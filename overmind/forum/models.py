@@ -9,6 +9,11 @@ from django.utils.timezone import utc
 from json_field import JSONField
 
 
+class Moderator(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL,
+                                related_name='forum_is_moderator')
+
+
 class LastSeen(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL,
                                 related_name='forum_last_seen')
@@ -66,3 +71,5 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return self.topic.get_absolute_url()
+
+

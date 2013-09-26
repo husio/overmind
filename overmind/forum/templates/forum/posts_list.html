@@ -25,6 +25,7 @@
                 <div class="span11 box-shadow">
                     <p>{{ post.content }}</p>
                     by {{ post.author.username }}, {{ post.created }}
+                    <div data-dynamic-widget="post-attributes:{{ post.id }}"></div>
                 </div>
             </div>
         {% empty %}

@@ -14,3 +14,4 @@ class TopicAdmin(admin.ModelAdmin):
 admin.site.register(models.Topic, TopicAdmin)
 admin.site.register(models.LastSeen)
 admin.site.register(models.Tag)
+admin.site.register(models.Moderator)

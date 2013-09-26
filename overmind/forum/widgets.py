@@ -1,8 +1,11 @@
+import datetime
+
 from django.template import RequestContext
 from django.template.loader import render_to_string
+from django.utils.timezone import utc
 
 from forum.forms import PostForm
-from forum.models import Topic, Post, LastSeen
+from forum.models import Topic, Post, LastSeen, Moderator
 from counter import backend
 from dynamicwidget.decorators import widget_handler
 
@@ -96,6 +99,46 @@ def post_is_new(request, widgets):
         if newest_post_dt > topics[tid]:
             last_seen.seen_topics[str(tid)] = newest_post_dt
             last_seen.save()
+
+    return res
+
+
+@widget_handler(r"^post-attributes:(?P<pid>\d+)$")
+def post_attributes(request, widgets):
+    if request.user.is_anonymous():
+        return {w['wid']: {'html': ''} for w in widgets}
+
+    is_moderator = Moderator.objects.filter(user=request.user).exists()
+    posts = {}
+    if not is_moderator:
+        post_ids = [w['params']['pid'] for w in widgets]
+        query = Post.objects.filter(id__in=post_ids).values('id', 'author',
+                                                            'created')
+        for post in query:
+            posts[post['id']] = post
+
+    res = {}
+    edit_limit_date = datetime.datetime.now().replace(tzinfo=utc) \
+                      - datetime.timedelta(minutes=10)
+    for widget in widgets:
+        if is_moderator:
+            ctx = {
+                'post': {'id': widget['params']['pid']},
+                'can_edit': True,
+                'can_close': True,
+            }
+        else:
+            post = posts[int(widget['params']['pid'])]
+            ctx = {
+                'post': post,
+                'can_edit': post['author'] == request.user.id \
+                            and post['created'] > edit_limit_date,
+                'can_close': False,
+            }
+
+        html = render_to_string('forum/widgets/post_attributes.html',
+                                RequestContext(request, ctx))
+        res[widget['wid']] = {'html': html}
 
     return res
 
