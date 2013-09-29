@@ -5,10 +5,12 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.core.urlresolvers import reverse
 from django.conf import settings
 from django.db import transaction
+from django.http import HttpResponseForbidden
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils.timezone import utc
 from django.views.decorators.http import condition
 
+from forum import permissions
 from forum.models import Topic, Post, Tag, LastSeen
 from forum.forms import TopicForm, PostForm, SearchForm
 from counter import backend
@@ -140,6 +142,10 @@ def posts_list(request, topic_pk):
 
 @login_required
 def topic_create(request):
+    perm_manager = permissions.manager_for(request.user)
+    if not perm_manager.can_create_topic():
+        return HttpResponseForbidden()
+
     if request.method == 'POST':
         topic = Topic(author=request.user)
         form = TopicForm(request.POST, instance=topic)
@@ -157,6 +163,11 @@ def topic_create(request):
 @login_required
 def post_create(request, topic_pk):
     topic = get_object_or_404(Topic, pk=topic_pk)
+
+    perm_manager = permissions.manager_for(request.user)
+    if not perm_manager.can_create_post(topic):
+        return HttpResponseForbidden()
+
     if request.method == 'POST':
         with transaction.autocommit():
             post = Post(topic=topic, author=request.user)
