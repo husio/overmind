@@ -14,23 +14,40 @@
   color: $colorWhite;
   text-transform: capitalize;
   letter-spacing: .1em;
+  position: relative;
 
   &:hover {
     background: $colorShinyBlue;
+    .sidebar-expand {
+      display: block;
+    }
+  }
+
+  .sidebar-expand {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: $sidebarWidth;
+    letter-spacing: 0;
+    background: $colorShinyBlue;
+    min-height: 100%;
+  }
+}
+
+.search-bar {
+  button {
+    margin: 14px 14px 0 0;
+  }
+  input {
+    width: 90%;
   }
 }
 
 .search-filter {
   position: relative;
   .filter-form {
-    display: none;
-    position: absolute;
-    top: 0;
-    left: $sidebarWidth;
     width: $sidebarWidth*2;
-    background: inherit;
-    padding-bottom: 10px;
-    letter-spacing: 0;
+    padding: 10px 0;
 
     .right-align {
       padding: 0 10px;
@@ -50,12 +67,6 @@
   button {
     display: inline-block;
     vertical-align: middle;
-  }
-
-  &:hover {
-    .filter-form {
-      display: block;
-    }
   }
 }
 

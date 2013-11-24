@@ -6,6 +6,7 @@
 
 {% block forum_header %}
     {{ block.super }}
+    <div dw-load="logged-user-actions"></div>
 {% endblock %}
 
 
@@ -50,15 +51,13 @@
 
     <div class="pagination">
         {% if topics.has_previous %}
-        <a href="?{% urlquery_set request page=topics.previous_page_number %}">previous</a>
+        <a href="?{% urlquery_set request page=topics.previous_page_number %}"><i class="fa fa-angle-double-left fa-2x"></i></a>
         {% endif %}
-
         <span class="current">
-            Page {{ topics.number }} of {{ topics.paginator.num_pages }}.
+            Page {{ topics.number }} of {{ topics.paginator.num_pages }}
         </span>
-
         {% if topics.has_next %}
-            <a href="?{% urlquery_set request page=topics.next_page_number %}">next</a>
+            <a href="?{% urlquery_set request page=topics.next_page_number %}"><i class="fa fa-angle-double-right fa-2x"></i></a>
         {% endif %}
     </div>
 {% endblock %}

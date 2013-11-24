@@ -1,69 +1,61 @@
-<div class="options-content">
-    <span class="title">options</span>
-    <div class="options">
-        <a class="option" href="{% url "forum:post-details" topic_pk=post.topic_id post_pk=post.pk %}"><i class="fa fa-fw fa-link"></i>link</a>
-        {% if can_edit %}
-            <a class="option" href="{% url "forum:post-edit" topic_pk=post.topic_id post_pk=post.pk %}"><i class="fa fa-fw fa-pencil"></i>edit</a>
-        {% endif %}
+<div class="options">
+    <a class="option" href="{% url "forum:post-details" topic_pk=post.topic_id post_pk=post.pk %}" title="link"><i class="fa fa-fw fa-link"></i></a>
+    {% if can_edit %}
+        <a class="option" href="{% url "forum:post-edit" topic_pk=post.topic_id post_pk=post.pk %}" title="edit"><i class="fa fa-fw fa-pencil"></i></a>
+    {% endif %}
 
-        {% if can_delete %}
-            <a class="option" href="{% url "forum:post-toggle-delete" topic_pk=post.topic_id post_pk=post.pk %}"><i class="fa fa-fw fa-trash-o"></i>
-                {% if post.is_deleted %}
-                recover
-                {% else %}
-                delete
-                {% endif %}
-            </a>
-        {% endif %}
-
-        {% if can_report_as_spam %}
-            <a class="option" href="{% url "forum:post-report-as-spam" topic_pk=post.topic_id post_pk=post.pk %}"><i class="fa fa-fw fa-thumbs-down"></i>
-                report as spam
-            </a>
-        {% endif %}
-
-        {% if can_solve %}
-            <a class="option" href="{% url "forum:post-toggle-is-solving" topic_pk=post.topic_id post_pk=post.pk %}">
-                {% if post.is_solving %}
-                <i class="fa fa-fw fa-times"></i>mark as not solving
-                {% else %}
-                <i class="fa fa-fw fa-check-square-o"></i>mark as solving
-                {% endif %}
-            </a>
-        {% endif %}
-        {% comment %}
-            {% if history %}
-                <span class="post-history">history</span>
-                <ul>
-                    {% for entry in history %}
-                    <li>
-                    {% if entry.action == "is_solving" %}
-                    marked as solving {{ entry.created|timesince }} ago
-                    {% endif %}
-
-                    {% if entry.action == "not_solving" %}
-                    mark "solving" removed {{ entry.created|timesince }} ago
-                    {% endif %}
-
-                    {% if entry.action == "spam_reported" %}
-                    reported as span {{ entry.created|timesince }} ago
-                    {% endif %}
-
-                    {% if entry.action == "deleted" %}
-                    deleted {{ entry.created|timesince }} ago
-                    {% endif %}
-
-                    {% if entry.action == "content_changed" %}
-                    edited {{ entry.created|timesince }} ago
-                    {% endif %}
-
-                    {% if entry.action == "recovered" %}
-                    recovered {{ entry.created|timesince }} ago
-                    {% endif %}
-                    </li>
-                    {% endfor %}
-                </ul>
+    {% if can_delete %}
+            {% if post.is_deleted %}
+            <a class="option" href="{% url "forum:post-toggle-delete" topic_pk=post.topic_id post_pk=post.pk %}" title="recover"><i class="fa fa-fw fa-trash-o"></i>
+            {% else %}
+            <a class="option" href="{% url "forum:post-toggle-delete" topic_pk=post.topic_id post_pk=post.pk %}" title="delete"><i class="fa fa-fw fa-trash-o"></i>
             {% endif %}
-        {% endcomment %}
-    </div>
+        </a>
+    {% endif %}
+
+    {% if can_report_as_spam %}
+        <a class="option" href="{% url "forum:post-report-as-spam" topic_pk=post.topic_id post_pk=post.pk %}" title="report as spam"><i class="fa fa-fw fa-thumbs-down"></i></a>
+    {% endif %}
+
+    {% if can_solve %}
+        {% if post.is_solving %}
+        <a class="option" href="{% url "forum:post-toggle-is-solving" topic_pk=post.topic_id post_pk=post.pk %}" title="mark as not solving"><i class="fa fa-fw fa-times"></i></a>
+        {% else %}
+        <a class="option" href="{% url "forum:post-toggle-is-solving" topic_pk=post.topic_id post_pk=post.pk %}" title="mark as solving"><i class="fa fa-fw fa-check-square-o"></i></a>
+        {% endif %}
+    {% endif %}
+    {% comment %}
+        {% if history %}
+            <span class="post-history">history</span>
+            <ul>
+                {% for entry in history %}
+                <li>
+                {% if entry.action == "is_solving" %}
+                marked as solving {{ entry.created|timesince }} ago
+                {% endif %}
+
+                {% if entry.action == "not_solving" %}
+                mark "solving" removed {{ entry.created|timesince }} ago
+                {% endif %}
+
+                {% if entry.action == "spam_reported" %}
+                reported as span {{ entry.created|timesince }} ago
+                {% endif %}
+
+                {% if entry.action == "deleted" %}
+                deleted {{ entry.created|timesince }} ago
+                {% endif %}
+
+                {% if entry.action == "content_changed" %}
+                edited {{ entry.created|timesince }} ago
+                {% endif %}
+
+                {% if entry.action == "recovered" %}
+                recovered {{ entry.created|timesince }} ago
+                {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endcomment %}
 </div>

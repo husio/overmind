@@ -141,13 +141,13 @@
   position: absolute;
   top: 0;
   right: 0px;
-  width: 0px;
+  width: auto;
   background: $colorWhite;
-  border-bottom: 1px solid $colorLightGrey;
+  //border-bottom: 1px solid $colorLightGrey;
   @include border-radius(6px);
   z-index: 1000;
   //transition: width .2s linear;
-
+/*
   &:hover {
     width: auto;
     border-left: 1px solid $colorLightGrey;
@@ -189,18 +189,20 @@
     background: $colorDarkerGrey;
     color: $colorWhite;
   }
-
+*/
   .options {
     //white-space: nowrap;
   }
 
   .option {
     display: inline-block;
-    margin: 4px 0 0 8px;
+    margin: 0;
     vertical-align: top;
-    padding: 10px 4px 14px 0;
+    padding: 4px 4px 0 8px;
+    //color: $colorShinyBlue;
+    @include opacity(0.4);
     &:hover {
-      color: $colorShinyBlue;
+      @include opacity(1);
     }
     &.disabled:hover {
       color: inherit;

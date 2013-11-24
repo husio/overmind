@@ -5,12 +5,12 @@
 
 {% block forum_header %}
     {{ block.super }}
-        <a href="{% url "forum:topics-list" %}"><i class="fa fa-angle-double-left fa-fw"></i>back to topics list</a>
+    <div dw-load="topic-attributes:{{ topic.id }}"></div>
 {% endblock %}
 
 {% block sidebar_actions %}
     {{ block.super }}
-    <div dw-load="topic-attributes:{{ topic.id }}"></div>
+
 {% endblock %}
 
 {% block forum_content %}
@@ -34,9 +34,7 @@
                 </div>
                 <div class="col">
                     <div class="post">
-                        <div class="options-bar" dw-hover="post-attributes:{{ post.id }}">
-                            <div class="options-icon"><i class="fa fa-cog fa-lg"></i></div>
-                        </div>
+                        <div class="options-bar" dw-load="post-attributes:{{ post.id }}"></div>
                         <span class="meta small"><a href="{% url "forum:user-details" post.author.pk %}">{{ post.author.username }}</a>, {{ post.created }}</span>
                         <span class="flag new" dw-load="post-is-new:{{ post.id }}"></span>
 
@@ -56,15 +54,15 @@
 
     <div class="pagination">
         {% if posts.has_previous %}
-            <a href="?page={{ posts.previous_page_number }}">previous</a>
+            <a href="?page={{ posts.previous_page_number }}"><i class="fa fa-angle-double-left fa-2x"></i></a>
         {% endif %}
 
         <span class="current">
-            Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
+            Page {{ posts.number }} of {{ posts.paginator.num_pages }}
         </span>
 
         {% if posts.has_next %}
-            <a href="?page={{ posts.next_page_number }}">next</a>
+            <a href="?page={{ posts.next_page_number }}"><i class="fa fa-angle-double-right fa-2x"></i></a>
         {% endif %}
     </div>
 {% endblock %}

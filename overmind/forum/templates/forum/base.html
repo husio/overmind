@@ -19,10 +19,11 @@
             </div>
             {% block sidebar_actions %}
             <div class="user-actions">
+                <a href="{% url "forum:topics-list" %}" class="sidebar-item">all topics</a>
                 {% if tags %}
                 <div class="search-filter sidebar-item">
-                    <span>filter topics</span>
-                    <form class="filter-form" action="{% url "forum:topics-list" %}" method="GET">
+                    <span>tags</span>
+                    <form class="filter-form sidebar-expand" action="{% url "forum:topics-list" %}" method="GET">
                         {% for tag in tags %}
                             <label>
                                 <input type="checkbox" name="tag" value="{{ tag.label }}" {% if tag.checked %}checked{% endif %}> {{ tag.label }}
@@ -34,7 +35,14 @@
                     </form>
                 </div>
                 {% endif %}
-                <div dw-load="logged-user-actions"></div>
+                <div class="search-bar sidebar-item">
+                    <form action="{% url "forum:posts-search" %}" method="GET">
+                        <span><input type="search" name="pattern" placeholder="search"></span>
+                        <div class="sidebar-expand">
+                            <button type="submit" class="pure-button">search</button>
+                        </div>
+                    </form>
+                </div>
             </div>
             {% endblock %}
             <div class="sidebar-footer">
@@ -42,19 +50,7 @@
             </div>
         </div>
         <div class="header">
-            <div class="header-inner">
-                <div class="header-left">
-                    {% block forum_header %}{% endblock %}
-                </div>
-                <div class="header-right">
-                    <div class="search-bar">
-                        <form action="{% url "forum:posts-search" %}" method="GET">
-                            <input type="search" name="pattern" placeholder="search">
-                            <button type="submit" class="pure-button pure-button-primary">search</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+            {% block forum_header %}{% endblock %}
         </div>
         <div class="content">
         {% block forum_content %}{% endblock %}
