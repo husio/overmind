@@ -1,3 +1,14 @@
+.search-box {
+  input[type=search] {
+    display: block;
+  }
+  label {
+    display: inline-block;
+    min-width: 166px;
+    padding: 10px 0;
+  }
+}
+
 .search-results {
     width: 90%;
     margin: auto;

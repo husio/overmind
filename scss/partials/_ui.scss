@@ -1,36 +1,8 @@
 // should contain basic ui elements like buttons, input elements, etc.
-.tooltip {
-  position: relative;
-  min-width: 16px;
-  display: inline-block;
-  text-align: center;
-  .tooltip-head {
-    line-height: 16px;
-  }
-  .tooltip-body {
-    display: none;
-    position: absolute;
-    left: 0;
-    top: 16px;
-    margin-left: -400%;
-    width: 900%;
-    z-index: 100;
-
-    .tooltip-text {
-      width: 100%;
-      max-width: 250px;
-      display: inline-block;
-      padding: 4px;
-      box-shadow: 0 1px 4px 1px #ccc;
-      border-radius: 8px;
-      background: $colorWhite;
-    }
-  }
-  &:hover {
-    .tooltip-body {
-      display: inline-block;
-    }
-  }
+input[type=text], input[type=search], input[type=email], input[type=number] {
+  border: 1px solid $colorLightGrey;
+  outline: none;
+  padding: 6px 8px;
 }
 
 .btn {

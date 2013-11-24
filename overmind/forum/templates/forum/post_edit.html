@@ -2,7 +2,7 @@
 
 
 {% block forum_content %}
-    <form class="pure-form" action="{% url "forum:post-edit" topic_pk=post.topic_id post_pk=post.pk %}" method="POST">
+    <form action="{% url "forum:post-edit" topic_pk=post.topic_id post_pk=post.pk %}" method="POST">
         {{ form.as_p }}
         {% csrf_token %}
         <button type="submit">save</button>

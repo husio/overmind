@@ -22,7 +22,7 @@
                 {% if tags %}
                 <div class="search-filter sidebar-item">
                     <span>filter topics</span>
-                    <form class="pure-form filter-form" action="{% url "forum:topics-list" %}" method="GET">
+                    <form class="filter-form" action="{% url "forum:topics-list" %}" method="GET">
                         {% for tag in tags %}
                             <label>
                                 <input type="checkbox" name="tag" value="{{ tag.label }}" {% if tag.checked %}checked{% endif %}> {{ tag.label }}
@@ -48,7 +48,7 @@
                 </div>
                 <div class="header-right">
                     <div class="search-bar">
-                        <form class="pure-form" action="{% url "forum:posts-search" %}" method="GET">
+                        <form action="{% url "forum:posts-search" %}" method="GET">
                             <input type="search" name="pattern" placeholder="search">
                             <button type="submit" class="pure-button pure-button-primary">search</button>
                         </form>

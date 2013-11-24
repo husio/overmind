@@ -4,7 +4,7 @@
 {% block forum_content %}
     <h2>{{ topic.subject }}</h2>
 
-    <form class="pure-form" action="{% url "forum:post-create" topic_pk=topic.pk %}" method="POST">
+    <form action="{% url "forum:post-create" topic_pk=topic.pk %}" method="POST">
         {{ form.as_p }}
         {% csrf_token %}
         <button type="submit">create</button>

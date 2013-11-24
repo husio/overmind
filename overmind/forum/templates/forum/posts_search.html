@@ -3,23 +3,27 @@
 
 {% load search urlquery %}
 
+{% block forum_header %}
+    {{ block.super }}
+        <a href="{% url "forum:topics-list" %}"><i class="fa fa-angle-double-left fa-fw"></i>back to topics list</a>
+{% endblock %}
 
 {% block forum_content %}
     <div class="search-results">
-        <div class="expand search-box">
-            <form class="pure-form" action="{% url "forum:posts-search" %}" method="GET">
-                {{ form.as_p }}
+        <div class="search-box">
+            <form action="{% url "forum:posts-search" %}" method="GET">
+                <input type="search" placeholder="search"/>
                 {% for tag in tags %}
                     <label>
                         <input type="checkbox" name="tag" value="{{ tag.label }}" {% if tag.checked %}checked{% endif %}> {{ tag.label }}
                     </label>
                 {% endfor %}
-                <button class="btn" type="submit">Search</button>
+                <button class="pure-button pure-button-primary" type="submit">Search</button>
             </form>
         </div>
 
         {% for post in posts %}
-            <div class="expand results">
+            <div class="results">
                 <h1>{{ post.topic.subject }}</h1>
                 <div class="">
                     {% mark_pattern post.content pattern %}

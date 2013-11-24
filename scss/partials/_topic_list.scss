@@ -11,7 +11,7 @@
 
   .avatar {
     line-height: 0;
-    width: 36px;
+    width: 46px;
     padding: 0 0 0 8px;
     display: table-cell;
     vertical-align: middle;
@@ -52,7 +52,7 @@
     }
 
     .topic-meta {
-      font-size: fontSizeBase;
+      font-size: $fontSizeSmall;
       color: $colorGrey;
       span {
         color: $colorGrey;
