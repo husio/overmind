@@ -1,10 +1,16 @@
 {% extends "forum/base.html" %}
 
+{% block forum_header %}
+    {{ block.super }}
+    <button type="submit" class="pure-button pure-button-primary">create</button>
+    <a href="{% url "forum:topics-list" %}" class="pure-button">cancel</a>
+{% endblock %}
 
 {% block forum_content %}
-    <form action="{% url "forum:topic-create" %}" method="POST">
-        {{ form.as_p }}
-        {% csrf_token %}
-        <button type="submit">create</button>
-    </form>
+    <div class="form-page">
+        <form action="{% url "forum:topic-create" %}" method="POST">
+            {{ form.as_p }}
+            {% csrf_token %}
+        </form>
+    </div>
 {% endblock %}

@@ -5,6 +5,26 @@ input[type=text], input[type=search], input[type=email], input[type=number] {
   padding: 6px 8px;
 }
 
-.btn {
+textarea {
+  position: relative;
+  background: $colorWhite;
+  padding: 4px 1%;
+  min-height: 64px;
+  line-height: 1.5em;
+  border: 1px solid $colorLightGrey;
+  width: 98%;
+  max-width: 98%;
+  outline: none;
+  transition: 0.3s linear border-color;
 
+  &:focus {
+    border-color: $colorShinyBlue;
+  }
 }
+
+select {
+  border: 1px solid $colorLightGrey;
+  outline: none;
+  padding: 2px;
+}
+

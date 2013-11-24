@@ -402,6 +402,25 @@ input[type=text], input[type=search], input[type=email], input[type=number] {
   outline: none;
   padding: 6px 8px; }
 
+textarea {
+  position: relative;
+  background: white;
+  padding: 4px 1%;
+  min-height: 64px;
+  line-height: 1.5em;
+  border: 1px solid #dddddd;
+  width: 98%;
+  max-width: 98%;
+  outline: none;
+  transition: 0.3s linear border-color; }
+  textarea:focus {
+    border-color: #0088cc; }
+
+select {
+  border: 1px solid #dddddd;
+  outline: none;
+  padding: 2px; }
+
 .header {
   background: white;
   margin: 0 auto 20px 200px;
@@ -419,6 +438,9 @@ input[type=text], input[type=search], input[type=email], input[type=number] {
     .header .header-item:hover {
       background: #0088cc;
       color: white; }
+  .header button, .header button + a {
+    float: right;
+    margin: 9px; }
 
 .sidebar .user-actions {
   color: white; }
@@ -724,6 +746,19 @@ p.solving {
       opacity: 1; }
     .options-bar .option.disabled:hover {
       color: inherit; }
+
+.form-page {
+  width: 96%;
+  margin: auto;
+  position: relative; }
+  .form-page label {
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 1%;
+    width: 10%;
+    text-align: right; }
+  .form-page textarea {
+    width: 70%; }
 
 .search-box input[type=search] {
   display: block; }

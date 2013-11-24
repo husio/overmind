@@ -19,4 +19,9 @@
       color: $colorWhite;
     }
   }
+
+  button, button+a {
+    float: right;
+    margin: 9px;
+  }
 }

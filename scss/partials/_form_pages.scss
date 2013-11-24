@@ -1,0 +1,17 @@
+.form-page {
+  width: 96%;
+  margin: auto;
+  position: relative;
+
+  label {
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 1%;
+    width: 10%;
+    text-align: right;
+  }
+
+  textarea{
+    width: 70%;
+  }
+}

@@ -5,7 +5,7 @@
     <h2>{{ topic.subject }}</h2>
 
     <form action="{% url "forum:post-create" topic_pk=topic.pk %}" method="POST">
-        {{ form.as_p }}
+        <div>{{ form }}</div>
         {% csrf_token %}
         <button type="submit">create</button>
     </form>
