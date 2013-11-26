@@ -4,10 +4,13 @@
   h1 {
     display: inline-block;
     font-weight: bold;
-    padding: 8px;
+    padding: 8px 8px 0 0;
   }
   .tags {
     display: inline-block;
+  }
+  .posts-list-actions {
+    margin: 0 0 0.67em 0;
   }
 }
 
@@ -199,7 +202,7 @@
     margin: 0;
     vertical-align: top;
     padding: 4px 4px 0 8px;
-    //color: $colorShinyBlue;
+    color: $colorDarkerGrey;
     @include opacity(0.4);
     &:hover {
       @include opacity(1);

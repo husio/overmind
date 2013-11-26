@@ -4,13 +4,8 @@
 {% load staticfiles urlquery avatar %}
 
 
-{% block forum_header %}
-    {{ block.super }}
-    <div dw-load="logged-user-actions"></div>
-{% endblock %}
-
-
 {% block forum_content %}
+    <div class="topic-list-actions" dw-load="logged-user-actions"></div>
     <div class="topic-list">
         {% for topic in topics %}
             <div class="table expand topic">

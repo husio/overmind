@@ -348,7 +348,7 @@ a, a:visited, a:hover, a:active, a:link {
   .content p.tiny, .content div.tiny, .content em.tiny {
     font-size: 10px; }
 .content a, .content a > span {
-  color: #383838; }
+  color: #0088cc; }
 .content h1 {
   font-size: 24px;
   color: #383838; }
@@ -421,27 +421,6 @@ select {
   outline: none;
   padding: 2px; }
 
-.header {
-  background: white;
-  margin: 0 auto 20px 200px;
-  padding: 0 2%;
-  box-shadow: 0 2px 2px 0 #dddddd;
-  min-height: 48px; }
-  .header .header-item {
-    display: inline-block;
-    padding: 16px 8px;
-    margin: 0 -4px 0 0;
-    border-right: 1px solid #eeeeee;
-    color: gray; }
-    .header .header-item:first-child {
-      border-left: 1px solid #eeeeee; }
-    .header .header-item:hover {
-      background: #0088cc;
-      color: white; }
-  .header button, .header button + a {
-    float: right;
-    margin: 9px; }
-
 .sidebar .user-actions {
   color: white; }
 
@@ -513,7 +492,7 @@ p.solving {
 
 .topic-list {
   width: 96%;
-  margin: auto; }
+  margin: 50px auto 0 auto; }
   .topic-list .topic {
     position: relative;
     table-layout: fixed;
@@ -550,15 +529,24 @@ p.solving {
       .topic-list .topic-main .topic-meta span {
         color: #566579; }
 
+.topic-list-actions {
+  position: absolute;
+  top: 9px;
+  right: 2%; }
+  .topic-list-actions a {
+    color: white; }
+
 .topic-title {
   width: 96%;
   margin: 0 auto; }
   .topic-title h1 {
     display: inline-block;
     font-weight: bold;
-    padding: 8px; }
+    padding: 8px 8px 0 0; }
   .topic-title .tags {
     display: inline-block; }
+  .topic-title .posts-list-actions {
+    margin: 0 0 0.67em 0; }
 
 .posts-list {
   width: 96%;
@@ -739,6 +727,7 @@ p.solving {
     margin: 0;
     vertical-align: top;
     padding: 4px 4px 0 8px;
+    color: #383838;
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40);
     opacity: 0.4; }
     .options-bar .option:hover {
@@ -759,6 +748,9 @@ p.solving {
     text-align: right; }
   .form-page textarea {
     width: 70%; }
+  .form-page button, .form-page button + a {
+    float: right;
+    margin: 9px; }
 
 .search-box input[type=search] {
   display: block; }
@@ -787,4 +779,4 @@ p.solving {
     display: inline-block;
     margin: 0 4px;
     vertical-align: middle;
-    color: #383838; }
+    color: #0088cc; }

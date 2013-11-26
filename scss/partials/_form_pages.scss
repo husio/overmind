@@ -14,4 +14,9 @@
   textarea{
     width: 70%;
   }
+
+  button, button+a {
+    float: right;
+    margin: 9px;
+  }
 }

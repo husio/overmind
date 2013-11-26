@@ -1,16 +1,14 @@
 {% extends "forum/base.html" %}
 
-{% block forum_header %}
-    {{ block.super }}
-    <button type="submit" class="pure-button pure-button-primary">save</button>
-    <a href="{{ post.get_absolute_url }}" class="pure-button">cancel</a>
-{% endblock %}
 
 {% block forum_content %}
     <div class="form-page">
         <form action="{% url "forum:post-edit" topic_pk=post.topic_id post_pk=post.pk %}" method="POST">
             <div>{{ form }}</div>
             {% csrf_token %}
+
+            <button type="submit" class="pure-button pure-button-primary">save</button>
+            <a href="{{ post.get_absolute_url }}" class="pure-button">cancel</a>
         </form>
     </div>
 {% endblock %}

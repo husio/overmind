@@ -1,4 +1,4 @@
 {% if user.is_authenticated %}
-    <a class="header-item" href="{% url "forum:topic-create" %}">create topic</a>
-    <a class="header-item" href="{% url "forum:mark-all-topics-read" %}">mark all topics as read</a>
+    <a class="pure-button pure-button-primary" href="{% url "forum:topic-create" %}">create topic</a>
+    <a class="pure-button pure-button-primary" href="{% url "forum:mark-all-topics-read" %}">mark all topics as read</a>
 {% endif %}
