@@ -136,5 +136,3 @@ class PostDeleteTest(TransactionTestCase):
     def post_toggle_delete(self, topic_id, post_id):
         url = reverse("forum:post-toggle-delete", args=(topic_id, post_id))
         return self.client.get(url)
-
-    def test_deleting_post_is_updating_topic(self):
