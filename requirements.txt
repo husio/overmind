@@ -1,3 +1,4 @@
 django==1.6
 django-json-field
 markdown
+-e git+http://github.com/husio/django-dynamicwidgets#egg=django_dynamicwidgets

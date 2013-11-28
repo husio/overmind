@@ -4,7 +4,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic import RedirectView
 
-from dynamicwidget import handlers
+from dynamicwidgets import handlers
 
 
 admin.autodiscover()
@@ -20,7 +20,7 @@ urlpatterns = patterns('',
     url(r'^counter/',
         include('counter.urls', 'counter')),
     url(r'^dynamicwidget/',
-        include('dynamicwidget.urls', 'dynamicwidget')),
+        include('dynamicwidgets.urls', 'dynamicwidget')),
     url(r'^_/admin/',
         include(admin.site.urls)),
 )

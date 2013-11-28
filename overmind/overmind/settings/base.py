@@ -19,10 +19,10 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     'json_field',
+    'dynamicwidgets',
 
     'forum',
     'simpleauth',
-    'dynamicwidget',
     'counter',
 )
 

@@ -4,7 +4,7 @@ from django.template import RequestContext
 from django.template.loader import render_to_string
 
 from counter import backend
-from dynamicwidget.decorators import widget_handler
+from dynamicwidgets.decorators import widget_handler
 
 from . import permissions
 from .forms import PostForm
