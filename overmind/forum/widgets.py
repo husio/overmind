@@ -15,47 +15,47 @@ from .models import LastSeen, Post, Topic, PostHistory
 def topic_view_count(request, widgets):
     key_tmpl = "topic:view:{}"
     counter = backend.default()
-    keys = [key_tmpl.format(w['params']['tid']) for w in widgets]
+    keys = [key_tmpl.format(w.params.tid) for w in widgets]
     counters = counter.get(*keys)
     res = {}
     for widget in widgets:
-        value = counters.get(key_tmpl.format(widget['params']['tid']), 0)
+        value = counters.get(key_tmpl.format(widget.params.tid), 0)
         ctx = {'value': value}
         html = render_to_string('forum/widgets/topic_view_count.html', ctx)
-        res[widget['wid']] = {'html': html, 'counter': value}
+        res[widget.wid] = {'html': html, 'counter': value}
     return res
 
 
 @widget_handler(r"^topic-is-new:(?P<tid>\d+)$")
 def topic_is_new(request, widgets):
     if request.user.is_anonymous():
-        return {w['wid']: {'isnew': False} for w in widgets}
+        return {w.wid: {'isnew': False} for w in widgets}
 
     topics = {}
-    query = Topic.objects.filter(id__in=[w['params']['tid'] for w in widgets])
+    query = Topic.objects.filter(id__in=[w.params.tid for w in widgets])
     for topic in query:
         topics[topic.id] = topic
     res = {}
     last_seen = LastSeen.obtain_for(request.user)
     for widget in widgets:
-        topic_id = int(widget['params']['tid'])
+        topic_id = int(widget.params.tid)
         latest = last_seen.seen_topics.get(
                 str(topic_id), request.user.forum_last_seen.last_seen_all)
         topic = topics.get(topic_id)
         is_new = topic.updated.replace(microsecond=0) > latest
         ctx = {'is_new': is_new, 'topic': topic}
         html = render_to_string('forum/widgets/topic_is_new.html', ctx)
-        res[widget['wid']] = {'html': html, 'isnew': is_new}
+        res[widget.wid] = {'html': html, 'isnew': is_new}
     return res
 
 
 @widget_handler(r"^topic-attributes:(?P<tid>\d+)$")
 def topic_attributes(request, widgets):
     if request.user.is_anonymous():
-        return {w['wid']: {} for w in widgets}
+        return {w.wid: {} for w in widgets}
 
     topics = {}
-    query = Topic.objects.filter(id__in=[w['params']['tid'] for w in widgets])
+    query = Topic.objects.filter(id__in=[w.params.tid for w in widgets])
     for topic in query:
         topics[topic.id] = topic
 
@@ -63,7 +63,7 @@ def topic_attributes(request, widgets):
 
     res = {}
     for widget in widgets:
-        topic = topics[int(widget['params']['tid'])]
+        topic = topics[int(widget.params.tid)]
         ctx = {
             'topic': topic,
             'can_edit': perm_manager.can_edit_topic(topic),
@@ -73,7 +73,7 @@ def topic_attributes(request, widgets):
         }
         html = render_to_string('forum/widgets/topic_attributes.html',
                                 RequestContext(request, ctx))
-        res[widget['wid']] = {'html': html}
+        res[widget.wid] = {'html': html}
     return res
 
 
@@ -87,10 +87,10 @@ def login_logout(request, widgets):
 @widget_handler(r"post-is-new:(?P<pid>\d+)$")
 def post_is_new(request, widgets):
     if request.user.is_anonymous():
-        return {w['wid']: {'isnew': False} for w in widgets}
+        return {w.wid: {'isnew': False} for w in widgets}
 
     last_seen = LastSeen.obtain_for(request.user)
-    query = Post.objects.filter(id__in=[w['params']['pid'] for w in widgets])
+    query = Post.objects.filter(id__in=[w.params.pid for w in widgets])
     posts = {}
     topics = {}
     newest = {}
@@ -113,12 +113,12 @@ def post_is_new(request, widgets):
 
     res = {}
     for widget in widgets:
-        post_id = int(widget['params']['pid'])
+        post_id = int(widget.params.pid)
         tid, updated = posts[post_id]
         is_new = updated > topics[tid]
         ctx = {'is_new': is_new}
         html = render_to_string('forum/widgets/post_is_new.html', ctx)
-        res[widget['wid']] = {'html': html, 'isnew': is_new}
+        res[widget.wid] = {'html': html, 'isnew': is_new}
 
 
     last_seen_changed = False
@@ -138,7 +138,7 @@ def post_is_new(request, widgets):
 @widget_handler(r"^post-attributes:(?P<pid>\d+)$")
 def post_attributes(request, widgets):
     res = {}
-    post_ids = [w['params']['pid'] for w in widgets]
+    post_ids = [w.params.pid for w in widgets]
 
     history = collections.defaultdict(list)
     for h in PostHistory.objects.filter(post__id__in=post_ids):
@@ -152,18 +152,18 @@ def post_attributes(request, widgets):
     perm_manager = permissions.manager_for(request.user)
 
     for widget in widgets:
-        post = posts[int(widget['params']['pid'])]
+        post = posts[int(widget.params.pid)]
         ctx = {
             'post': post,
             'can_edit': perm_manager.can_edit_post(post),
             'can_delete': perm_manager.can_delete_post(post),
             'can_report_as_spam': perm_manager.can_report_post_as_spam(post),
             'can_solve': perm_manager.can_solve_topic_with_post(post),
-            'history': history[widget['params']['pid']],
+            'history': history[widget.params.pid],
         }
         html = render_to_string('forum/widgets/post_attributes.html',
                                 RequestContext(request, ctx))
-        res[widget['wid']] = {'append': html}
+        res[widget.wid] = {'html': html}
     return res
 
 
@@ -172,7 +172,7 @@ def topic_comment_form(request, widgets):
     perm_manager = permissions.manager_for(request.user)
 
     topics = {}
-    topic_ids = [w['params']['tid'] for w in widgets]
+    topic_ids = [w.params.tid for w in widgets]
     for topic in Topic.objects.filter(id__in=topic_ids):
         topics[topic.id] = topic
 
@@ -180,11 +180,11 @@ def topic_comment_form(request, widgets):
     res = {}
     ctx = RequestContext(request, {'form': form, 'user': request.user})
     for widget in widgets:
-        topic = topics[int(widget['params']['tid'])]
+        topic = topics[int(widget.params.tid)]
         ctx['can_create_post'] = perm_manager.can_create_post(topic)
         ctx['topic'] = topic
         html = render_to_string('forum/widgets/topic_comment_form.html', ctx)
-        res[widget['wid']] = {'html': html}
+        res[widget.wid] = {'html': html}
     return res
 
 
@@ -200,13 +200,13 @@ def post_history_info(request, widgets):
     res = {}
 
     history = collections.defaultdict(list)
-    post_ids = [w['params']['pid'] for w in widgets]
+    post_ids = [w.params.pid for w in widgets]
     for h in PostHistory.objects.filter(post__id__in=post_ids):
         history[str(h.post_id)].append(h)
 
     for widget in widgets:
-        ctx = {'history': history[widget['params']['pid']]}
+        ctx = {'history': history[widget.params.pid]}
         html = render_to_string('forum/widgets/post_history_info.html', ctx)
-        res[widget['wid']] = {'append': html}
+        res[widget.wid] = {'html': html}
 
     return res

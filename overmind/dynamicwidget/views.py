@@ -7,7 +7,7 @@ from django.http import HttpResponse
 from django.views.decorators.cache import never_cache
 from django.views.decorators.gzip import gzip_page
 
-from dynamicwidget import handlers
+from dynamicwidget import handlers, dotdict
 
 
 @never_cache
@@ -21,7 +21,8 @@ def widgets(request):
     for wid in wids:
         fn, params = handlers.default.find(wid)
         if fn:
-            matching_handlers[fn].append({'wid': wid, 'params': params})
+            match = dotdict.Dict(wid=wid, params=dotdict.Dict(params))
+            matching_handlers[fn].append(match)
         else:
             result[wid] = {'error': 'widget "{}" does not exist'.format(wid)}
 

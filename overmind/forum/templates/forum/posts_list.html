@@ -24,7 +24,12 @@
                 </div>
                 <div class="col">
                     <div class="post">
-                        <div class="options-bar" dw-load="post-attributes:{{ post.id }}"></div>
+                        <div class="options-bar" dw-hover="post-attributes:{{ post.id }},html,@.options:first" dw-once>
+                            <i class="fa fa-cog"></i>
+                            <span class="options">
+                                <i class="fa fa-spinner fa-spin"></i>
+                            </span>
+                        </div>
                         <span class="meta small"><a href="{% url "forum:user-details" post.author.pk %}">{{ post.author.username }}</a>, {{ post.created }}</span>
                         <span class="flag new" dw-load="post-is-new:{{ post.id }}"></span>
 
