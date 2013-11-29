@@ -1,5 +1,7 @@
 import datetime
 
+from django.utils.timezone import utc
+
 from forum.models import Moderator, Post, Topic
 
 
@@ -68,9 +70,10 @@ class SimpleManager:
         if self._is_moderator():
             return True
         post = self._post_from_cache(post_or_pk)
+        now = datetime.datetime.now().replace(tzinfo=utc)
         if post.topic.updated == post.created \
                 and post.author_id == self.user.id \
-                and post.created > self._edit_limit_date:
+                and post.created + self._edit_limit_date > now:
             return True
         return False
 
