@@ -101,6 +101,9 @@ class TopicHistory(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL)
     prev_subject = models.TextField(default='', blank=True)
 
+    def action_description(self):
+        return dict(self.ACTION_CHOICES)[self.action]
+
 
 class Post(models.Model):
     topic = models.ForeignKey(Topic, related_name='posts')
@@ -133,3 +136,6 @@ class PostHistory(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(settings.AUTH_USER_MODEL)
     prev_content = models.TextField(default='', blank=True)
+
+    def action_description(self):
+        return dict(self.ACTION_CHOICES)[self.action]

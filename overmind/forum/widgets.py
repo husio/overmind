@@ -190,7 +190,10 @@ def topic_comment_form(request, widgets):
 
 @widget_handler(r"^logged-user-actions$")
 def logged_user_actions(request, widgets):
-    ctx = RequestContext(request)
+    perm_manager = permissions.manager_for(request.user)
+    ctx = RequestContext(request, {
+        'is_moderator': perm_manager.is_moderator()
+    })
     html = render_to_string('forum/widgets/logged_user_actions.html', ctx)
     return {"logged-user-actions": {"html": html}}
 

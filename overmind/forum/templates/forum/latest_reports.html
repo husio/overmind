@@ -1,0 +1,60 @@
+{% extends "forum/base.html" %}
+
+
+{% load avatar markup %}
+
+
+{% block forum_content %}
+    <div style="width:49%;float:left;">
+        <h1>Recent topic reports</h1>
+        {% for th in topics_history %}
+            <div>
+                <div>
+                    <strong>{{ th.action_description }}</strong>
+                    by
+                    <a href="{% url "forum:user-details" user_pk=th.author_id %}">
+                        {{ th.author.username }}
+                    </a>,
+                    {{ th.created|timesince }} ago
+                </div>
+                <div>
+                    <a href="{{ th.topic.get_absolute_url }}">
+                        {{ th.topic.subject }}
+                    </a>
+                    create by
+                    <a href="{% url "forum:user-details" user_pk=th.topic.author_id %}">
+                        {{ th.topic.author.username }}
+                    </a>
+                </div>
+            </div>
+            {% if not forloop.last %}<hr>{% endif %}
+        {% endfor %}
+    </div>
+
+    <div style="width:49%;float:right;">
+        <h1>Recent post reports</h1>
+        {% for ph in posts_history %}
+            <div>
+                <div>
+                    <strong>{{ ph.action_description }}</strong>
+                    by
+                    <a href="{% url "forum:user-details" user_pk=ph.author_id %}">
+                        {{ ph.author.username }}
+                    </a>,
+                    {{ ph.created|timesince }} ago
+                </div>
+                <div>
+                    <a href="{{ ph.post.get_absolute_url }}">
+                        {{ ph.post.topic.subject }}
+                    </a>
+                    create by
+                    <a href="{% url "forum:user-details" user_pk=ph.post.author_id %}">
+                        {{ ph.post.author.username }}
+                    </a>
+                    <p>{{ ph.post.content|markup:"markdown"|truncatewords_html:"40" }}</p>
+                </div>
+            </div>
+            {% if not forloop.last %}<hr>{% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}

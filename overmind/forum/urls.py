@@ -19,10 +19,11 @@ urlpatterns = patterns('forum.views',
     url(r'^topic/(?P<topic_pk>\d+)/post/(?P<post_pk>\d+)/details/$', 'post_details', name="post-details"),
     url(r'^topic/(?P<topic_pk>\d+)/post/(?P<post_pk>\d+)/edit/$', 'post_edit', name="post-edit"),
     url(r'^topic/(?P<topic_pk>\d+)/post/(?P<post_pk>\d+)/report-as-spam/$', 'post_report_as_spam', name="post-report-as-spam"),
-    url(r'search/$', 'posts_search', name="posts-search"),
+    url(r'^search/$', 'posts_search', name="posts-search"),
 
     # user related
-    url(r'user/(?P<user_pk>\d+)/$', 'user_details', name="user-details"),
+    url(r'^user/(?P<user_pk>\d+)/$', 'user_details', name="user-details"),
 
     # moderation pages
+    url(r'^moderation/reports/$', 'latest_reports', name='latest-reports'),
 )

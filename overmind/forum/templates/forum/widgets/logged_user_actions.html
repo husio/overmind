@@ -1,4 +1,7 @@
 {% if user.is_authenticated %}
+    {% if is_moderator %}
+        <a class="pure-button pure-button-secondary" href="{% url "forum:latest-reports" %}">latest reports</a>
+    {% endif %}
     <a class="pure-button pure-button-primary" href="{% url "forum:topic-create" %}">create topic</a>
     <a class="pure-button pure-button-primary" href="{% url "forum:mark-all-topics-read" %}">mark all topics as read</a>
 {% endif %}

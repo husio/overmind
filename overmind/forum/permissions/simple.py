@@ -35,7 +35,7 @@ class SimpleManager:
         self._topics_cache[topic.id] = topic
         return topic
 
-    def _is_moderator(self):
+    def is_moderator(self):
         if not hasattr(self, '_is_moderator_cache'):
             if self.user.is_anonymous():
                 self._is_moderator_cache = False
@@ -47,14 +47,14 @@ class SimpleManager:
     def can_edit_topic(self, topic_or_pk):
         if self.user.is_anonymous():
             return False
-        if self._is_moderator():
+        if self.is_moderator():
             return True
         return False
 
     def can_close_topic(self, topic_or_pk):
         if self.user.is_anonymous():
             return False
-        if self._is_moderator():
+        if self.is_moderator():
             return True
         return False
 
@@ -62,12 +62,12 @@ class SimpleManager:
         return self.user.is_authenticated()
 
     def can_delete_topic(self, topic_or_pk):
-        return self._is_moderator()
+        return self.is_moderator()
 
     def can_edit_post(self, post_or_pk):
         if self.user.is_anonymous():
             return False
-        if self._is_moderator():
+        if self.is_moderator():
             return True
         post = self._post_from_cache(post_or_pk)
         now = datetime.datetime.now().replace(tzinfo=utc)
@@ -80,7 +80,7 @@ class SimpleManager:
     def can_create_post(self, topic_or_pk):
         if self.user.is_anonymous():
             return False
-        if self._is_moderator():
+        if self.is_moderator():
             return True
         topic = self._topic_from_cache(topic_or_pk)
         return True
@@ -90,7 +90,7 @@ class SimpleManager:
     def can_solve_topic_with_post(self, post_or_pk):
         if self.user.is_anonymous():
             return False
-        if self._is_moderator():
+        if self.is_moderator():
             return True
         post = self._post_from_cache(post_or_pk)
         if self.user.id == post.topic.author_id:

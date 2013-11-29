@@ -3,7 +3,7 @@ import math
 
 from django.conf import settings
 from django.contrib.auth import get_user_model
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.core.urlresolvers import reverse
 from django.db import connection, transaction
@@ -445,3 +445,21 @@ def topic_report_as_spam(request, topic_pk):
     if not dest_url:
         dest_url = topic.get_absolute_url()
     return redirect(dest_url)
+
+
+@never_cache
+@user_passes_test(lambda u: permissions.manager_for(u).is_moderator())
+def latest_reports(request):
+    mod_actions = ['deleted', 'spam_reported']
+    topics_history = TopicHistory.objects.filter(action__in=mod_actions)\
+            .select_related('topic', 'author', 'topic__author')\
+            .order_by('-created')
+    posts_history  = PostHistory.objects.filter(action__in=mod_actions)\
+            .select_related('post', 'post__topic', 'post__author', 'author')\
+            .order_by('-created')
+
+    ctx = {
+        'topics_history': topics_history[:100],
+        'posts_history': posts_history[:100],
+    }
+    return render(request, 'forum/latest_reports.html', ctx)
