@@ -6,6 +6,7 @@ p.solving {
 .tag {
   margin: 0 4px;
   padding: 2px 0;
+  display: inline-block;
 
   &.solved {
     color: $colorLighterGreen;

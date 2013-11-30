@@ -146,55 +146,19 @@
   right: 0px;
   width: auto;
   background: $colorWhite;
-  //border-bottom: 1px solid $colorLightGrey;
   @include border-radius(6px);
   z-index: 1000;
-  //transition: width .2s linear;
-/*
-  &:hover {
-    width: auto;
-    border-left: 1px solid $colorLightGrey;
-    box-shadow: -2px 2px 5px 0px $colorLightGrey;
-
-    .options-icon {
-      left: 0;
-      color: $colorWhite;
-    }
-
-    .options-content {
-      width: auto;
-    }
-  }
-
-  .options-icon {
-    position: absolute;
-    top: 0;
-    left: -28px;
-    width: 16px;
-    height: 16px;
-    background: transparent;
-    font-size: 16px;
-    padding: 6px;
-    line-height: 1em;
-  }
 
   .options-content {
-    width: 0;
-    overflow: hidden;
-    @include border-top-left-radius(6px);
-    overflow: hidden;
-  }
+    .fa-spinner {
+      display: none;
+      margin: 4px 4px 0 8px;
+    }
 
-  .title {
-    display: inline-block;
-    padding: 4px 10px 4px 35px;
-    vertical-align: top;
-    background: $colorDarkerGrey;
-    color: $colorWhite;
-  }
-*/
-  .options {
-    //white-space: nowrap;
+    &:hover {
+      .fa-spinner { display: inline-block; }
+      .fa-cog { display: none; }
+    }
   }
 
   .option {

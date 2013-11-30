@@ -49,11 +49,15 @@
       position: absolute;
       right: 4px;
       bottom: 4px;
+      max-width: 50%;
+      text-align: right;
+      line-height: 1.3em;
     }
 
     .topic-meta {
       font-size: $fontSizeSmall;
       color: $colorGrey;
+      max-width: 50%;
       span {
         color: $colorGrey;
       }
