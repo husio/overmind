@@ -18,13 +18,15 @@
             <div class="logo-container">
                 <a href="{% url "forum:topics-list" %}"><img src="{% static "forum/img/archlogo.png" %}"></a>
             </div>
+            <div class="actions">
                 {% block forum_header_primary %}
                 <div class="user-actions">
                     <a href="{% url "forum:topics-list" %}" class="">all topics</a>
 
                 </div>
                 {% endblock %}
-                <div class="login-area"><div dw-load="login-logout"></div></div>
+            </div>
+            <div class="login-area"><div dw-load="login-logout"></div></div>
         </div>
         <div class="header-secondary">
             {% block forum_header_secondary %}

@@ -3,50 +3,54 @@
     margin: 0 auto;
     position: relative;
     padding: 2px;
+    display: table;
+    border-top: 1px dashed $colorLighterGrey;
 }
 
 .header-primary {
     margin-top: 20px;
-    background: $colorDarkerGrey;
-    color: $colorWhite;
+    color: $textPrimary;
     .logo-container {
-        display: inline-block;
-        vertical-align: bottom;
+        display: table-cell;
+        vertical-align: middle;
         height: 30px;
-        img { height: 100%; }
+        width: 160px;
+        img { height: 100%; background: $colorDarkerGrey; }
+    }
+    .actions {
+        display: table-cell;
+        vertical-align: middle;
     }
     .user-actions {
         margin-left: 10px;
     }
     .user-actions, .topic-list-actions {
         display: inline-block;
-        vertical-align: bottom;
+        vertical-align: middle;
         line-height: 2em;
         a {
-            color: $colorWhite;
+            color: $textHighlight;
             &:hover {
-                color: $textHighlight;
+                color: $textPrimary;
             }
         }
     }
     .login-area {
-        position: absolute;
-        right: 4px;
-        bottom: 2px;
+        display: table-cell;
+        vertical-align: middle;
+        text-align: right;
         line-height: 2em;
-        color: $colorWhite;
+        color: $textPrimary;
         a {
             color: $textHighlight;
             &:hover {
-                color: $colorWhite;
+                color: $textPrimary;
             }
         }
     }
 }
 
 .header-secondary {
-    display: table;
-    background: $colorLightGrey;
     .search-filter {
         display: table-cell;
         vertical-align: middle;
@@ -54,6 +58,7 @@
             display: inline-block;
             font-size: $fontSizeSmall;
             min-width: 150px;
+            color: $textPrimary;
         }
         input, input + span {
             display: inline-block;

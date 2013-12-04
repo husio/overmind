@@ -413,67 +413,71 @@ select {
   width: 96%;
   margin: 0 auto;
   position: relative;
-  padding: 2px; }
+  padding: 2px;
+  display: table;
+  border-top: 1px dashed #eeeeee; }
 
 .header-primary {
   margin-top: 20px;
-  background: #383838;
-  color: white; }
+  color: gray; }
   .header-primary .logo-container {
-    display: inline-block;
-    vertical-align: bottom;
-    height: 30px; }
+    display: table-cell;
+    vertical-align: middle;
+    height: 30px;
+    width: 160px; }
     .header-primary .logo-container img {
-      height: 100%; }
+      height: 100%;
+      background: #383838; }
+  .header-primary .actions {
+    display: table-cell;
+    vertical-align: middle; }
   .header-primary .user-actions {
     margin-left: 10px; }
   .header-primary .user-actions, .header-primary .topic-list-actions {
     display: inline-block;
-    vertical-align: bottom;
+    vertical-align: middle;
     line-height: 2em; }
     .header-primary .user-actions a, .header-primary .topic-list-actions a {
-      color: white; }
+      color: #0088cc; }
       .header-primary .user-actions a:hover, .header-primary .topic-list-actions a:hover {
-        color: #0088cc; }
+        color: gray; }
   .header-primary .login-area {
-    position: absolute;
-    right: 4px;
-    bottom: 2px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: right;
     line-height: 2em;
-    color: white; }
+    color: gray; }
     .header-primary .login-area a {
       color: #0088cc; }
       .header-primary .login-area a:hover {
-        color: white; }
+        color: gray; }
 
-.header-secondary {
-  display: table;
-  background: #dddddd; }
-  .header-secondary .search-filter {
-    display: table-cell;
+.header-secondary .search-filter {
+  display: table-cell;
+  vertical-align: middle; }
+  .header-secondary .search-filter label {
+    display: inline-block;
+    font-size: 12px;
+    min-width: 150px;
+    color: gray; }
+  .header-secondary .search-filter input, .header-secondary .search-filter input + span {
+    display: inline-block;
     vertical-align: middle; }
-    .header-secondary .search-filter label {
-      display: inline-block;
-      font-size: 12px;
-      min-width: 150px; }
-    .header-secondary .search-filter input, .header-secondary .search-filter input + span {
-      display: inline-block;
-      vertical-align: middle; }
-  .header-secondary .posts-list-actions {
-    display: table-cell;
+.header-secondary .posts-list-actions {
+  display: table-cell;
+  vertical-align: middle; }
+  .header-secondary .posts-list-actions a {
+    color: #0088cc; }
+    .header-secondary .posts-list-actions a:hover {
+      color: white; }
+.header-secondary .search-bar {
+  display: table-cell;
+  vertical-align: middle;
+  min-width: 270px;
+  text-align: right; }
+  .header-secondary .search-bar input, .header-secondary .search-bar button {
+    display: inline-block;
     vertical-align: middle; }
-    .header-secondary .posts-list-actions a {
-      color: #0088cc; }
-      .header-secondary .posts-list-actions a:hover {
-        color: white; }
-  .header-secondary .search-bar {
-    display: table-cell;
-    vertical-align: middle;
-    min-width: 270px;
-    text-align: right; }
-    .header-secondary .search-bar input, .header-secondary .search-bar button {
-      display: inline-block;
-      vertical-align: middle; }
 
 p.solving {
   color: #22aa22;
