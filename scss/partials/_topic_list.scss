@@ -1,14 +1,14 @@
 .topic-list {
-  width: 96%;
-  margin: 50px auto 0 auto;
+  width: $contentWidth;
+  margin: 10px auto 0 auto;
 
   .topic {
     position: relative;
-    table-layout: fixed;
-    background: $colorWhite;
-    border-bottom: 1px solid $colorLightGrey;
+    //table-layout: fixed;
+    //background: $colorDarkWhite;
+    border-bottom: 1px solid $colorLighterGrey;
   }
-
+/*
   .avatar {
     line-height: 0;
     width: 46px;
@@ -16,9 +16,9 @@
     display: table-cell;
     vertical-align: middle;
   }
-
+*/
   .topic-main {
-    display: table-cell;
+    display: block;
     vertical-align: top;
     position: relative;
     padding: 8px 10px 4px 10px;
@@ -36,38 +36,40 @@
       font-weight: bold;
     }
 
-    .closed {
-      // todo: add icon with :before
+    .topic-attributes-right {
+        margin-left: 24px;
+        border-left: 2px solid $colorLighterGrey;
+        padding-left: 4px;
     }
 
-    .solved {
-      // todo: add icon with :before
+    .topic-attributes-left {
+        position: absolute;
+        top: 28px;
+        left: 10px;
+        width: 23px;
+        span {
+            font-size: $fontSizeSmall;
+            line-height: 1.3em;
+        }
     }
 
     .tags {
       font-size: $fontSizeSmall;
-      position: absolute;
-      right: 4px;
-      bottom: 4px;
-      max-width: 50%;
-      text-align: right;
+      //position: absolute;
+      //right: 4px;
+      //bottom: 4px;
+      //max-width: 50%;
+      //text-align: right;
       line-height: 1.3em;
     }
 
     .topic-meta {
       font-size: $fontSizeSmall;
-      color: $colorGrey;
-      max-width: 50%;
-      span {
-        color: $colorGrey;
-      }
+      //max-width: 50%;
     }
   }
 }
 
 .topic-list-actions {
-  position: absolute;
-  top: 9px;
-  right: 2%;
-  a { color: $colorWhite; }
+
 }

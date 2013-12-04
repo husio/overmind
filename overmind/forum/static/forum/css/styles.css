@@ -372,7 +372,7 @@ a, a:visited, a:hover, a:active, a:link {
 
 html, body {
   min-height: 100%;
-  background-color: #eeeeee;
+  background-color: #fdfdfd;
   overflow-x: hidden;
   position: relative; }
 
@@ -382,21 +382,8 @@ html, body {
   font-family: arial, sans-serif;
   font-size: 14px; }
 
-.sidebar {
-  display: block;
-  width: 200px;
-  min-height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  background: #383838;
-  color: #eeeeee;
-  z-index: 2000; }
-
 .content {
-  margin: auto;
-  padding-left: 200px; }
+  margin: auto; }
 
 input[type=text], input[type=search], input[type=email], input[type=number] {
   border: 1px solid #dddddd;
@@ -422,65 +409,71 @@ select {
   outline: none;
   padding: 2px; }
 
-.sidebar .user-actions {
+.header-primary, .header-secondary {
+  width: 96%;
+  margin: 0 auto;
+  position: relative;
+  padding: 2px; }
+
+.header-primary {
+  margin-top: 20px;
+  background: #383838;
   color: white; }
-
-.mobile-menu {
-  display: none; }
-
-.logo-container {
-  padding: 5px 0; }
-
-.sidebar-item {
-  display: block;
-  padding: 14px;
-  color: white;
-  text-transform: capitalize;
-  letter-spacing: .1em;
-  position: relative; }
-  .sidebar-item:hover {
-    background: #0088cc; }
-    .sidebar-item:hover .sidebar-expand {
-      display: block; }
-  .sidebar-item .sidebar-expand {
-    display: none;
+  .header-primary .logo-container {
+    display: inline-block;
+    vertical-align: bottom;
+    height: 30px; }
+    .header-primary .logo-container img {
+      height: 100%; }
+  .header-primary .user-actions {
+    margin-left: 10px; }
+  .header-primary .user-actions, .header-primary .topic-list-actions {
+    display: inline-block;
+    vertical-align: bottom;
+    line-height: 2em; }
+    .header-primary .user-actions a, .header-primary .topic-list-actions a {
+      color: white; }
+      .header-primary .user-actions a:hover, .header-primary .topic-list-actions a:hover {
+        color: #0088cc; }
+  .header-primary .login-area {
     position: absolute;
-    top: 0;
-    left: 200px;
-    letter-spacing: 0;
-    background: #0088cc;
-    min-height: 100%; }
+    right: 4px;
+    bottom: 2px;
+    line-height: 2em;
+    color: white; }
+    .header-primary .login-area a {
+      color: #0088cc; }
+      .header-primary .login-area a:hover {
+        color: white; }
 
-.search-bar button {
-  margin: 14px 14px 0 0; }
-.search-bar input {
-  width: 90%; }
-
-.search-filter {
-  position: relative; }
-  .search-filter .filter-form {
-    width: 400px;
-    padding: 10px 0; }
-    .search-filter .filter-form .right-align {
-      padding: 0 10px;
-      text-align: right; }
-  .search-filter label {
-    display: inline-block;
-    padding: 0 10px;
-    line-height: 1.8em;
-    width: 176px; }
-    .search-filter label input {
-      vertical-align: middle; }
-  .search-filter button {
-    display: inline-block;
+.header-secondary {
+  display: table;
+  background: #dddddd; }
+  .header-secondary .search-filter {
+    display: table-cell;
     vertical-align: middle; }
-
-.sidebar-footer {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  padding: 10px 10px 50px 10px;
-  width: 180px; }
+    .header-secondary .search-filter label {
+      display: inline-block;
+      font-size: 12px;
+      min-width: 150px; }
+    .header-secondary .search-filter input, .header-secondary .search-filter input + span {
+      display: inline-block;
+      vertical-align: middle; }
+  .header-secondary .posts-list-actions {
+    display: table-cell;
+    vertical-align: middle; }
+    .header-secondary .posts-list-actions a {
+      color: #0088cc; }
+      .header-secondary .posts-list-actions a:hover {
+        color: white; }
+  .header-secondary .search-bar {
+    display: table-cell;
+    vertical-align: middle;
+    min-width: 270px;
+    text-align: right; }
+    .header-secondary .search-bar input, .header-secondary .search-bar button {
+      display: inline-block;
+      vertical-align: middle; }
 
 p.solving {
   color: #22aa22;
@@ -497,20 +490,21 @@ p.solving {
 
 .topic-list {
   width: 96%;
-  margin: 50px auto 0 auto; }
+  margin: 10px auto 0 auto;
+  /*
+    .avatar {
+      line-height: 0;
+      width: 46px;
+      padding: 0 0 0 8px;
+      display: table-cell;
+      vertical-align: middle;
+    }
+  */ }
   .topic-list .topic {
     position: relative;
-    table-layout: fixed;
-    background: white;
-    border-bottom: 1px solid #dddddd; }
-  .topic-list .avatar {
-    line-height: 0;
-    width: 46px;
-    padding: 0 0 0 8px;
-    display: table-cell;
-    vertical-align: middle; }
+    border-bottom: 1px solid #eeeeee; }
   .topic-list .topic-main {
-    display: table-cell;
+    display: block;
     vertical-align: top;
     position: relative;
     padding: 8px 10px 4px 10px;
@@ -520,30 +514,26 @@ p.solving {
     .topic-list .topic-main a {
       white-space: nowrap;
       text-decoration: none;
-      font-size: 15px; }
+      font-size: 16px; }
     .topic-list .topic-main .new {
       font-weight: bold; }
+    .topic-list .topic-main .topic-attributes-right {
+      margin-left: 24px;
+      border-left: 2px solid #eeeeee;
+      padding-left: 4px; }
+    .topic-list .topic-main .topic-attributes-left {
+      position: absolute;
+      top: 28px;
+      left: 10px;
+      width: 23px; }
+      .topic-list .topic-main .topic-attributes-left span {
+        font-size: 12px;
+        line-height: 1.3em; }
     .topic-list .topic-main .tags {
       font-size: 12px;
-      position: absolute;
-      right: 4px;
-      bottom: 4px;
-      max-width: 50%;
-      text-align: right;
       line-height: 1.3em; }
     .topic-list .topic-main .topic-meta {
-      font-size: 12px;
-      color: #566579;
-      max-width: 50%; }
-      .topic-list .topic-main .topic-meta span {
-        color: #566579; }
-
-.topic-list-actions {
-  position: absolute;
-  top: 9px;
-  right: 2%; }
-  .topic-list-actions a {
-    color: white; }
+      font-size: 12px; }
 
 .topic-title {
   width: 96%;
@@ -609,7 +599,7 @@ p.solving {
       .posts-list .col .post:hover .post-options {
         display: block; }
     .posts-list .col .meta {
-      color: #566579;
+      color: #cccccc;
       line-height: 2em; }
 
 .new-post {
@@ -712,12 +702,13 @@ p.solving {
 .form-page {
   width: 96%;
   margin: auto;
-  position: relative; }
+  position: relative;
+  margin-top: 20px; }
   .form-page label {
     display: inline-block;
     vertical-align: top;
     margin-right: 1%;
-    width: 10%;
+    min-width: 10%;
     text-align: right; }
   .form-page textarea {
     width: 70%; }
@@ -733,11 +724,11 @@ p.solving {
   padding: 10px 0; }
 
 .search-results {
-  width: 90%;
-  margin: auto; }
+  width: 96%;
+  margin: 10px auto 0 auto; }
 
 .results {
-  box-shadow: 1px 1px 3px -1px #566579;
+  box-shadow: 1px 1px 3px -1px #cccccc;
   margin: 16px auto;
   padding: 8px;
   background: white; }

@@ -1,13 +1,14 @@
 .form-page {
-  width: 96%;
+  width: $contentWidth;
   margin: auto;
   position: relative;
+  margin-top: 20px;
 
   label {
     display: inline-block;
     vertical-align: top;
     margin-right: 1%;
-    width: 10%;
+    min-width: 10%;
     text-align: right;
   }
 

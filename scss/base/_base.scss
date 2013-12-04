@@ -22,7 +22,7 @@
 
 html, body {
   min-height: 100%;
-  background-color: $colorLighterGrey;
+  background-color: $colorDarkWhite;
   overflow-x: hidden;
   position: relative;
 }
@@ -34,22 +34,7 @@ html, body {
   font-size: $fontSizeBase;
 }
 
-$sidebarWidth: 200px;
-
-.sidebar {
-  display: block;
-  width: $sidebarWidth;
-  min-height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  background: $colorDarkerGrey;
-  color: $colorLighterGrey;
-  z-index: 2000;
-}
-
 .content {
   margin: auto;
-  padding-left: $sidebarWidth;
 }
+$contentWidth: 96%;

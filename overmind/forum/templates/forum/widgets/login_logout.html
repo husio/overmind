@@ -1,9 +1,8 @@
 {% if user.is_authenticated %}
-    <p>logged in as <strong>{{ user.get_full_name|default:user.username }}</strong>!</p>
-    <a class="pure-button pure-button-primary" href="{% url "simpleauth:logout" %}">logout</a>
+    Hello <strong>{{ user.get_full_name|default:user.username }}</strong>!
+    <a href="{% url "simpleauth:logout" %}">logout</a>
 {% else %}
-    <p>You are not logged in.</p><br/>
-    <a class="pure-button pure-button-primary" href="{% url "simpleauth:login" %}">login</a>
-    <p>or</p>
-    <a class="pure-button" href="{% url "simpleauth:register" %}">sign up</a>
+    <a href="{% url "simpleauth:login" %}">login</a>
+    or
+    <a href="{% url "simpleauth:register" %}">sign up</a>
 {% endif %}

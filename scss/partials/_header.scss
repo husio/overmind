@@ -1,0 +1,83 @@
+.header-primary, .header-secondary {
+    width: $contentWidth;
+    margin: 0 auto;
+    position: relative;
+    padding: 2px;
+}
+
+.header-primary {
+    margin-top: 20px;
+    background: $colorDarkerGrey;
+    color: $colorWhite;
+    .logo-container {
+        display: inline-block;
+        vertical-align: bottom;
+        height: 30px;
+        img { height: 100%; }
+    }
+    .user-actions {
+        margin-left: 10px;
+    }
+    .user-actions, .topic-list-actions {
+        display: inline-block;
+        vertical-align: bottom;
+        line-height: 2em;
+        a {
+            color: $colorWhite;
+            &:hover {
+                color: $textHighlight;
+            }
+        }
+    }
+    .login-area {
+        position: absolute;
+        right: 4px;
+        bottom: 2px;
+        line-height: 2em;
+        color: $colorWhite;
+        a {
+            color: $textHighlight;
+            &:hover {
+                color: $colorWhite;
+            }
+        }
+    }
+}
+
+.header-secondary {
+    display: table;
+    background: $colorLightGrey;
+    .search-filter {
+        display: table-cell;
+        vertical-align: middle;
+        label {
+            display: inline-block;
+            font-size: $fontSizeSmall;
+            min-width: 150px;
+        }
+        input, input + span {
+            display: inline-block;
+            vertical-align: middle;
+        }
+    }
+    .posts-list-actions {
+        display: table-cell;
+        vertical-align: middle;
+        a {
+            color: $textHighlight;
+            &:hover {
+                color: $colorWhite;
+            }
+        }
+    }
+    .search-bar {
+        display: table-cell;
+        vertical-align: middle;
+        min-width: 270px;
+        text-align: right;
+        input, button {
+            display: inline-block;
+            vertical-align: middle;
+        }
+    }
+}

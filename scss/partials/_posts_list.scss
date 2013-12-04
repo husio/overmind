@@ -1,5 +1,5 @@
 .topic-title {
-  width: 96%;
+  width: $contentWidth;
   margin: 0 auto;
   h1 {
     display: inline-block;
@@ -15,7 +15,7 @@
 }
 
 .posts-list {
-  width: 96%;
+  width: $contentWidth;
   margin: auto;
   .col {
     padding: 8px 0;
@@ -78,7 +78,7 @@
 }
 
 .new-post {
-  width: 96%;
+  width: $contentWidth;
   margin: 8px auto;
 
   .col {

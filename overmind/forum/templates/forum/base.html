@@ -14,40 +14,38 @@
 </head>
 <body>
     <div class="main">
-        <div class="sidebar">
+        <div class="header-primary">
             <div class="logo-container">
                 <a href="{% url "forum:topics-list" %}"><img src="{% static "forum/img/archlogo.png" %}"></a>
             </div>
-            {% block sidebar_actions %}
-            <div class="user-actions">
-                <a href="{% url "forum:topics-list" %}" class="sidebar-item">all topics</a>
+                {% block forum_header_primary %}
+                <div class="user-actions">
+                    <a href="{% url "forum:topics-list" %}" class="">all topics</a>
+
+                </div>
+                {% endblock %}
+                <div class="login-area"><div dw-load="login-logout"></div></div>
+        </div>
+        <div class="header-secondary">
+            {% block forum_header_secondary %}
                 {% if tags %}
-                <div class="search-filter sidebar-item">
-                    <span>tags</span>
-                    <form class="filter-form sidebar-expand" action="{% url "forum:topics-list" %}" method="GET">
+                <div class="search-filter">
+                    <form class="filter-form" action="{% url "forum:topics-list" %}" method="GET">
                         {% for tag in tags %}
                             <label>
-                                <input type="checkbox" name="tag" value="{{ tag.label }}" {% if tag.checked %}checked{% endif %}> {{ tag.label }}
+                                <input type="checkbox" name="tag" value="{{ tag.label }}" {% if tag.checked %}checked{% endif %}><span>{{ tag.label }}</span>
                             </label>
                         {% endfor %}
-                        <div class="right-align">
-                            <button type="submit" class="pure-button">Filter topics</button>
-                        </div>
+                        <!--<button type="submit" class="">Filter topics</button>-->
                     </form>
                 </div>
                 {% endif %}
-                <div class="search-bar sidebar-item">
-                    <form action="{% url "forum:posts-search" %}" method="GET">
-                        <span><input type="search" name="pattern" placeholder="search"></span>
-                        <div class="sidebar-expand">
-                            <button type="submit" class="pure-button">search</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
             {% endblock %}
-            <div class="sidebar-footer">
-                <div class="login-area"><div dw-load="login-logout"></div></div>
+            <div class="search-bar">
+                <form action="{% url "forum:posts-search" %}" method="GET">
+                    <input type="search" name="pattern" placeholder="search">
+                    <button type="submit" class="">search</button>
+                </form>
             </div>
         </div>
         <div class="content">

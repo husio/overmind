@@ -3,39 +3,48 @@
 
 {% load staticfiles urlquery avatar %}
 
+{% block forum_header_primary %}
+{{ block.super }}
+<div class="topic-list-actions" dw-load="logged-user-actions"></div>
+{% endblock %}
+
 
 {% block forum_content %}
-    <div class="topic-list-actions" dw-load="logged-user-actions"></div>
     <div class="topic-list">
         {% for topic in topics %}
-            <div class="table expand topic">
+            <div class="topic">
+                {% comment %}
                 <div class="avatar">
                     <a href="{{ topic.get_absolute_url }}">
                         {% avatar_tag topic.author.email 46 %}
                     </a>
                 </div>
+                {% endcomment %}
                 <div class="topic-main">
                     <a href="{{ topic.get_absolute_url }}" dw-load="topic-is-new:{{ topic.id }}">{{ topic.subject }}</a>
-                    <div class="tags">
-                        {% if topic.is_closed %}<span class="tag closed"><i class="fa fa-ban fa-fw"></i>closed</span>{% endif %}
-                        {% if topic.is_solved %}<span class="tag solved"><i class="fa fa-check fa-fw"></i>solved</span>{% endif %}
-                        {% for tag in topic.tags.all %}<span class="tag">{% if forloop.first %}<i class="fa fa-tags fa-fw"></i>{% endif %}{{ tag }}{% if not forloop.last %},{% endif %}</span>{% endfor %}
+                    <div class="topic-attributes-left">
+                        {% if topic.is_solved %}<span class="tag solved"><i class="fa fa-check fa-fw"></i></span>{% endif %}
+                        {% if topic.is_closed %}<span class="tag closed"><i class="fa fa-lock fa-fw"></i></span>{% endif %}
                     </div>
-
-                    <div class="topic-meta">
-                        {% if topic.response_count %}
-                            {{ topic.response_count }} response{{ topic.response_count|pluralize }}
-                        {% else %}
-                            no responses
-                        {% endif %}
-                        &bull;
-                        <span dw-load="topic-view-count:{{ topic.id }}">- views</span>
-                        &bull;
-                        <span title="{{ topic.updated }}">created {{ topic.updated }}</span>
-                        {% if topic.posts_count > POSTS_PER_PAGE %}
+                    <div class="topic-attributes-right">
+                        <div class="tags">
+                            {% for tag in topic.tags.all %}{% if forloop.first %}<i class="fa fa-tags fa-fw"></i>{% endif %}<span class="tag">{{ tag }}{% if not forloop.last %},{% endif %}</span>{% endfor %}
+                        </div>
+                        <div class="topic-meta">
+                            {% if topic.response_count %}
+                                {{ topic.response_count }} response{{ topic.response_count|pluralize }}
+                            {% else %}
+                                no responses
+                            {% endif %}
                             &bull;
-                            <a href="{% url "forum:posts-list-last-page" topic_pk=topic.pk %}">last page</a>
-                        {% endif %}
+                            <span dw-load="topic-view-count:{{ topic.id }}">- views</span>
+                            &bull;
+                            <span title="{{ topic.updated }}">created {{ topic.updated }}</span>
+                            {% if topic.posts_count > POSTS_PER_PAGE %}
+                                &bull;
+                                <a href="{% url "forum:posts-list-last-page" topic_pk=topic.pk %}">last page</a>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
             </div>
