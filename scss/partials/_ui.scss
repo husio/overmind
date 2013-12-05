@@ -28,3 +28,30 @@ select {
   padding: 2px;
 }
 
+.checkbox {
+    cursor: pointer;
+    .fa-fw {
+        text-align: left;
+    }
+    input[type=checkbox] {
+        display: none;
+
+        + .label {
+            .state-checked {
+                display: none;
+            }
+            .state-unchecked {
+                display: inline-block;
+            }
+        }
+
+        &:checked + .label {
+            .state-checked {
+                display: inline-block;
+            }
+            .state-unchecked {
+                display: none;
+            }
+        }
+    }
+}

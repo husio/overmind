@@ -1,11 +1,13 @@
 {% load avatar %}
 
 {% if topic.is_closed %}
-    <div>
+    <div class="right-align">
         You cannot comment. Topic is closed.
     </div>
 {% elif user.is_anonymous %}
-    You have to <a href="{% url "simpleauth:login" %}">login</a> to comment.
+    <div class="right-align">
+        You have to <a href="{% url "simpleauth:login" %}">login</a> to comment.
+    </div>
 {% else %}
     {% if can_create_post %}
         <form class="row" action="{% url "forum:post-create" topic_pk=topic.id %}" method="POST">

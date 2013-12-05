@@ -22,6 +22,10 @@ a, a:visited, a:hover, a:active, a:link {
   }
   a, a > span {
     color: $textHighlight;
+
+    &:hover {
+        color: $textHighlightHover;
+    }
   }
 
   h1 {

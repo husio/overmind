@@ -55,13 +55,13 @@
 
     <div class="pagination">
         {% if topics.has_previous %}
-        <a href="?{% urlquery_set request page=topics.previous_page_number %}"><i class="fa fa-angle-double-left fa-2x"></i></a>
+        <a href="?{% urlquery_set request page=topics.previous_page_number %}"><i class="fa fa-angle-left fa-2x"></i></a>
         {% endif %}
         <span class="current">
             Page {{ topics.number }} of {{ topics.paginator.num_pages }}
         </span>
         {% if topics.has_next %}
-            <a href="?{% urlquery_set request page=topics.next_page_number %}"><i class="fa fa-angle-double-right fa-2x"></i></a>
+            <a href="?{% urlquery_set request page=topics.next_page_number %}"><i class="fa fa-angle-right fa-2x"></i></a>
         {% endif %}
     </div>
 {% endblock %}

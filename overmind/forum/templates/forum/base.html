@@ -3,7 +3,7 @@
 <head>
     {% load staticfiles %}
     <meta charset="utf-8">
-    <meta name="viewport" content="width=1024px">
+    <meta name="viewport" content="width=768px">
     <title>{% block title %}Forum 4.0{% endblock %}</title>
     <script type="text/javascript">window.DYNAMIC_WIDGETS_URL = '{% url "dynamicwidget:widgets" %}';</script>
     {% block css %}
@@ -15,16 +15,11 @@
 <body>
     <div class="main">
         <div class="header-primary">
-            <div class="logo-container">
-                <a href="{% url "forum:topics-list" %}"><img src="{% static "forum/img/archlogo.png" %}"></a>
+            <div class="home-container">
+                <a href="{% url "forum:topics-list" %}"><i class="fa fa-home fa-fw"></i>Home</a>
             </div>
             <div class="actions">
-                {% block forum_header_primary %}
-                <div class="user-actions">
-                    <a href="{% url "forum:topics-list" %}" class="">all topics</a>
-
-                </div>
-                {% endblock %}
+                {% block forum_header_primary %}{% endblock %}
             </div>
             <div class="login-area"><div dw-load="login-logout"></div></div>
         </div>
@@ -34,8 +29,13 @@
                 <div class="search-filter">
                     <form class="filter-form" action="{% url "forum:topics-list" %}" method="GET">
                         {% for tag in tags %}
-                            <label>
-                                <input type="checkbox" name="tag" value="{{ tag.label }}" {% if tag.checked %}checked{% endif %}><span>{{ tag.label }}</span>
+                            <label class="checkbox">
+                                <input type="checkbox" class="hidden" name="tag" value="{{ tag.label }}" {% if tag.checked %}checked{% endif %}>
+                                <span class="label">
+                                    <i class="fa fa-square-o fa-fw state-unchecked"></i>
+                                    <i class="fa fa-check-square-o fa-fw state-checked"></i>
+                                    {{ tag.label }}
+                                </span>
                             </label>
                         {% endfor %}
                         <!--<button type="submit" class="">Filter topics</button>-->

@@ -348,13 +348,18 @@ a, a:visited, a:hover, a:active, a:link {
   .content p.tiny, .content div.tiny, .content em.tiny {
     font-size: 10px; }
 .content a, .content a > span {
-  color: #0088cc; }
+  color: #383838; }
+  .content a:hover, .content a > span:hover {
+    color: #0088cc; }
 .content h1 {
   font-size: 24px;
   color: #383838; }
 
 .hidden {
   display: none; }
+
+.right-align {
+  text-align: right; }
 
 .table {
   display: table;
@@ -409,48 +414,58 @@ select {
   outline: none;
   padding: 2px; }
 
+.checkbox {
+  cursor: pointer; }
+  .checkbox .fa-fw {
+    text-align: left; }
+  .checkbox input[type=checkbox] {
+    display: none; }
+    .checkbox input[type=checkbox] + .label .state-checked {
+      display: none; }
+    .checkbox input[type=checkbox] + .label .state-unchecked {
+      display: inline-block; }
+    .checkbox input[type=checkbox]:checked + .label .state-checked {
+      display: inline-block; }
+    .checkbox input[type=checkbox]:checked + .label .state-unchecked {
+      display: none; }
+
 .header-primary, .header-secondary {
   width: 96%;
   margin: 0 auto;
   position: relative;
-  padding: 2px;
+  padding: 10px 2px;
   display: table;
   border-top: 1px dashed #eeeeee; }
 
 .header-primary {
   margin-top: 20px;
   color: gray; }
-  .header-primary .logo-container {
+  .header-primary a {
+    color: #383838; }
+    .header-primary a:hover {
+      color: #0088cc; }
+  .header-primary .home-container {
     display: table-cell;
     vertical-align: middle;
-    height: 30px;
-    width: 160px; }
-    .header-primary .logo-container img {
-      height: 100%;
-      background: #383838; }
+    font-size: 16px;
+    width: 70px; }
   .header-primary .actions {
     display: table-cell;
     vertical-align: middle; }
-  .header-primary .user-actions {
-    margin-left: 10px; }
-  .header-primary .user-actions, .header-primary .topic-list-actions {
+  .header-primary .topic-list-actions {
     display: inline-block;
-    vertical-align: middle;
-    line-height: 2em; }
-    .header-primary .user-actions a, .header-primary .topic-list-actions a {
-      color: #0088cc; }
-      .header-primary .user-actions a:hover, .header-primary .topic-list-actions a:hover {
-        color: gray; }
+    vertical-align: middle; }
+    .header-primary .topic-list-actions a:before {
+      content: '';
+      height: 100%;
+      border-left: 1px solid #383838;
+      padding: 0 5px;
+      margin: 0 0 0 5px; }
   .header-primary .login-area {
     display: table-cell;
     vertical-align: middle;
     text-align: right;
-    line-height: 2em;
     color: gray; }
-    .header-primary .login-area a {
-      color: #0088cc; }
-      .header-primary .login-area a:hover {
-        color: gray; }
 
 .header-secondary .search-filter {
   display: table-cell;
@@ -460,16 +475,23 @@ select {
     font-size: 12px;
     min-width: 150px;
     color: gray; }
-  .header-secondary .search-filter input, .header-secondary .search-filter input + span {
-    display: inline-block;
-    vertical-align: middle; }
 .header-secondary .posts-list-actions {
   display: table-cell;
   vertical-align: middle; }
   .header-secondary .posts-list-actions a {
-    color: #0088cc; }
+    color: #383838; }
     .header-secondary .posts-list-actions a:hover {
-      color: white; }
+      color: #0088cc; }
+    .header-secondary .posts-list-actions a:before {
+      content: '';
+      height: 100%;
+      border-left: 1px solid #383838;
+      padding: 0 5px;
+      margin: 0 0 0 5px; }
+    .header-secondary .posts-list-actions a:first-child:before {
+      border-left: none;
+      margin: 0;
+      padding: 0; }
 .header-secondary .search-bar {
   display: table-cell;
   vertical-align: middle;
@@ -747,4 +769,4 @@ p.solving {
     display: inline-block;
     margin: 0 4px;
     vertical-align: middle;
-    color: #0088cc; }
+    color: #383838; }
