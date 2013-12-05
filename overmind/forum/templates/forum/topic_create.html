@@ -5,8 +5,8 @@
         <form action="{% url "forum:topic-create" %}" method="POST">
             {{ form.as_p }}
             {% csrf_token %}
-            <button type="submit">create</button>
-            <a href="{% url "forum:topics-list" %}">cancel</a>
+            <button type="submit" class="btn-primary">create</button>
+            <a href="{% url "forum:topics-list" %}" class="btn-secondary">cancel</a>
         </form>
     </div>
 {% endblock %}

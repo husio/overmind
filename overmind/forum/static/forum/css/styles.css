@@ -377,7 +377,7 @@ a, a:visited, a:hover, a:active, a:link {
 
 html, body {
   min-height: 100%;
-  background-color: #fdfdfd;
+  background-color: #fbfbfb;
   overflow-x: hidden;
   position: relative; }
 
@@ -389,6 +389,24 @@ html, body {
 
 .content {
   margin: auto; }
+
+.btn-primary, .btn-secondary, a.btn-primary, a.btn-secondary {
+  box-sizing: content-box;
+  height: 2em;
+  line-height: 2em;
+  padding: 0 10px;
+  border: 1px solid #cccccc;
+  background: white; }
+  .btn-primary:hover, .btn-secondary:hover, a.btn-primary:hover, a.btn-secondary:hover {
+    background: #0088cc;
+    color: white;
+    border-color: #0088cc; }
+
+.btn-primary, a.btn-primary {
+  color: #0088cc; }
+
+.btn-secondary, a.btn-secondary {
+  color: gray; }
 
 input[type=text], input[type=search], input[type=email], input[type=number] {
   border: 1px solid #dddddd;

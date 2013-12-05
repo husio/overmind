@@ -7,6 +7,6 @@
     <form action="{% url "forum:post-create" topic_pk=topic.pk %}" method="POST">
         <div>{{ form }}</div>
         {% csrf_token %}
-        <button type="submit">create</button>
+        <button type="submit" class="btn-primary">create</button>
     </form>
 {% endblock %}

@@ -1,4 +1,26 @@
 // should contain basic ui elements like buttons, input elements, etc.
+.btn-primary, .btn-secondary, a.btn-primary, a.btn-secondary {
+    box-sizing: content-box;
+    height: 2em;
+    line-height: 2em;
+    padding: 0 10px;
+    border: 1px solid $colorGrey;
+    background: $colorWhite;
+    &:hover {
+        background: $colorShinyBlue;
+        color: $colorWhite;
+        border-color: $colorShinyBlue;
+    }
+}
+
+.btn-primary, a.btn-primary {
+    color: $colorShinyBlue;
+}
+
+.btn-secondary, a.btn-secondary {
+    color: $colorDarkGrey;
+}
+
 input[type=text], input[type=search], input[type=email], input[type=number] {
   border: 1px solid $colorLightGrey;
   outline: none;

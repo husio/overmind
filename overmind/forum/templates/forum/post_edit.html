@@ -6,9 +6,8 @@
         <form action="{% url "forum:post-edit" topic_pk=post.topic_id post_pk=post.pk %}" method="POST">
             <div>{{ form }}</div>
             {% csrf_token %}
-
-            <button type="submit">save</button>
-            <a href="{{ post.get_absolute_url }}">cancel</a>
+            <button type="submit" class="btn-primary">save</button>
+            <a href="{{ post.get_absolute_url }}" class="btn-secondary">cancel</a>
         </form>
     </div>
 {% endblock %}
