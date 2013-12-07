@@ -13,13 +13,6 @@
     <div class="topic-list">
         {% for topic in topics %}
             <div class="topic">
-                {% comment %}
-                <div class="avatar">
-                    <a href="{{ topic.get_absolute_url }}">
-                        {% avatar_tag topic.author.email 46 %}
-                    </a>
-                </div>
-                {% endcomment %}
                 <div class="topic-main">
                     <a href="{{ topic.get_absolute_url }}" dw-load="topic-is-new:{{ topic.id }}">{{ topic.subject }}</a>
                     <div class="topic-attributes-left">
