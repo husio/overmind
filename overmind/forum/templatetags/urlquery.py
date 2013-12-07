@@ -50,3 +50,19 @@ def urlquery_set(request_or_urlquery, **kwargs):
         newpairs.append((key, value))
     newpairs.extend(kwargs.items())
     return parse.urlencode(newpairs)
+
+
+@register.simple_tag
+def urlquery_toggle(request_or_urlquery, **kwargs):
+    if isinstance(request_or_urlquery, HttpRequest):
+        urlquery = request_or_urlquery.META['QUERY_STRING']
+    else:
+        urlquery = request_or_urlquery
+
+    newpairs = parse.parse_qsl(urlquery)
+    for key, value in kwargs.items():
+        try:
+            newpairs.remove((key, value))
+        except ValueError:
+            newpairs.append((key, value))
+    return parse.urlencode(newpairs)

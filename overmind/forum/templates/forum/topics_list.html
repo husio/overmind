@@ -3,9 +3,25 @@
 
 {% load staticfiles urlquery avatar %}
 
+
 {% block forum_header_primary %}
-{{ block.super }}
-<div class="topic-list-actions" dw-load="logged-user-actions"></div>
+    <div class="topic-list-actions" dw-load="logged-user-actions"></div>
+{% endblock %}
+
+
+{% block forum_header_secondary %}
+    <div class="search-filter">
+        {% for tag in tags %}
+            <a class="tag {% if not tag.checked %}in{% endif %}active" href="?{% urlquery_toggle request tag=tag.label %}">
+                {% if tag.checked %}
+                    <i class="fa fa-square-o fa-fw state-unchecked"></i>
+                {% else %}
+                    <i class="fa fa-check-square-o fa-fw state-checked"></i>
+                {% endif %}
+                {{ tag.label }}
+            </a>
+        {% endfor %}
+    </div>
 {% endblock %}
 
 

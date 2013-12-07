@@ -24,25 +24,7 @@
             <div class="login-area"><div dw-load="login-logout"></div></div>
         </div>
         <div class="header-secondary">
-            {% block forum_header_secondary %}
-                {% if tags %}
-                <div class="search-filter">
-                    <form class="filter-form" action="{% url "forum:topics-list" %}" method="GET">
-                        {% for tag in tags %}
-                            <label class="checkbox">
-                                <input type="checkbox" class="hidden" name="tag" value="{{ tag.label }}" {% if tag.checked %}checked{% endif %}>
-                                <span class="label">
-                                    <i class="fa fa-square-o fa-fw state-unchecked"></i>
-                                    <i class="fa fa-check-square-o fa-fw state-checked"></i>
-                                    {{ tag.label }}
-                                </span>
-                            </label>
-                        {% endfor %}
-                        <!--<button type="submit" class="">Filter topics</button>-->
-                    </form>
-                </div>
-                {% endif %}
-            {% endblock %}
+            {% block forum_header_secondary %}{% endblock %}
             <div class="search-bar">
                 <form action="{% url "forum:posts-search" %}" method="GET">
                     <input type="search" name="pattern" placeholder="enter search string">
