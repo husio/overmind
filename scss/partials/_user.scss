@@ -1,0 +1,36 @@
+.user-details {
+    width: $contentWidth;
+    margin: 0 auto;
+    display: table;
+
+    .user {
+        display: table-cell;
+        width: 18%;
+        padding: 0 1%;
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    }
+
+    .user-topics, .user-posts {
+        display: table-cell;
+        width: 38%;
+        padding: 0 1%;
+    }
+
+    .user-posts {
+        .post-preview {
+            margin: 10px 0;
+            p {
+                display: inline;
+            }
+        }
+    }
+
+    .user-topics {
+        > div {
+            margin: 10px 0;
+        }
+    }
+}

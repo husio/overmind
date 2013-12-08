@@ -51,11 +51,14 @@
     .search-filter {
         display: table-cell;
         vertical-align: middle;
-        label {
+        a {
             display: inline-block;
             font-size: $fontSizeSmall;
             min-width: 150px;
             color: $textPrimary;
+            .fa-fw {
+                text-align: left;
+            }
         }
     }
     .posts-list-actions {

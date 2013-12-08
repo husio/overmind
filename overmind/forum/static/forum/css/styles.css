@@ -392,21 +392,24 @@ html, body {
 
 .btn-primary, .btn-secondary, a.btn-primary, a.btn-secondary {
   box-sizing: content-box;
-  height: 2em;
-  line-height: 2em;
-  padding: 0 10px;
-  border: 1px solid #cccccc;
-  background: white; }
-  .btn-primary:hover, .btn-secondary:hover, a.btn-primary:hover, a.btn-secondary:hover {
-    background: #0088cc;
-    color: white;
-    border-color: #0088cc; }
+  padding: 6px 10px;
+  color: white; }
 
 .btn-primary, a.btn-primary {
-  color: #0088cc; }
+  border: 1px solid #0088cc;
+  background: #0088cc; }
+  .btn-primary:hover, a.btn-primary:hover {
+    background: white;
+    color: #0088cc;
+    border-color: #0088cc; }
 
 .btn-secondary, a.btn-secondary {
-  color: gray; }
+  border: 1px solid gray;
+  background: gray; }
+  .btn-secondary:hover, a.btn-secondary:hover {
+    background: white;
+    color: gray;
+    border-color: gray; }
 
 input[type=text], input[type=search], input[type=email], input[type=number] {
   border: 1px solid #dddddd;
@@ -488,11 +491,13 @@ select {
 .header-secondary .search-filter {
   display: table-cell;
   vertical-align: middle; }
-  .header-secondary .search-filter label {
+  .header-secondary .search-filter a {
     display: inline-block;
     font-size: 12px;
     min-width: 150px;
     color: gray; }
+    .header-secondary .search-filter a .fa-fw {
+      text-align: left; }
 .header-secondary .posts-list-actions {
   display: table-cell;
   vertical-align: middle; }
@@ -759,6 +764,28 @@ p.solving {
   .form-page button, .form-page button + a {
     float: right;
     margin: 9px; }
+
+.user-details {
+  width: 96%;
+  margin: 0 auto;
+  display: table; }
+  .user-details .user {
+    display: table-cell;
+    width: 18%;
+    padding: 0 1%; }
+    .user-details .user img {
+      max-width: 100%;
+      height: auto; }
+  .user-details .user-topics, .user-details .user-posts {
+    display: table-cell;
+    width: 38%;
+    padding: 0 1%; }
+  .user-details .user-posts .post-preview {
+    margin: 10px 0; }
+    .user-details .user-posts .post-preview p {
+      display: inline; }
+  .user-details .user-topics > div {
+    margin: 10px 0; }
 
 .search-box input[type=search] {
   display: block; }

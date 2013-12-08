@@ -7,10 +7,15 @@
     <div class="search-results">
         <div class="search-box">
             <form action="{% url "forum:posts-search" %}" method="GET">
-                <input type="search" placeholder="search"/>
+                <input type="search" placeholder="search" name="pattern" value="{{ pattern }}">
                 {% for tag in tags %}
-                    <label>
-                        <input type="checkbox" name="tag" value="{{ tag.label }}" {% if tag.checked %}checked{% endif %}> {{ tag.label }}
+                    <label class="checkbox">
+                        <input type="checkbox" name="tag" value="{{ tag.label }}" {% if tag.checked %}checked{% endif %}>
+                        <span class="label">
+                            <i class="fa fa-check-square-o fa-fw state-checked"></i>
+                            <i class="fa fa-square-o fa-fw state-unchecked"></i>
+                            {{ tag.label }}
+                        </span>
                     </label>
                 {% endfor %}
                 <button class="btn-primary" type="submit">Search</button>
@@ -20,9 +25,7 @@
         {% for post in posts %}
             <div class="results">
                 <h1>{{ post.topic.subject }}</h1>
-                <div class="">
-                    {% mark_pattern post.content pattern %}
-                </div>
+                {% mark_pattern post.content pattern %}
             </div>
         {% empty %}
             {% if pattern %}
