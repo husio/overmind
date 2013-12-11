@@ -1,12 +1,12 @@
 from django.contrib.auth import get_user_model
 from django.core.urlresolvers import reverse
-from django.test import Client, TransactionTestCase
+from django.test import Client, TestCase
 from django.test.utils import override_settings
 
 from forum.models import Topic, Post
 
 
-class PostCreationTest(TransactionTestCase):
+class PostCreationTest(TestCase):
     fixtures = ['forum/tests/small_size_forum.yaml']
 
     def setUp(self):
@@ -32,7 +32,7 @@ class PostCreationTest(TransactionTestCase):
         self.assertEqual(topic.updated, post.created)
 
 
-class PostDetailsPageTest(TransactionTestCase):
+class PostDetailsPageTest(TestCase):
     fixtures = ['forum/tests/small_size_forum.yaml']
 
     @override_settings(FORUM_POSTS_PER_PAGE=2)
@@ -67,7 +67,7 @@ class PostDetailsPageTest(TransactionTestCase):
         self.assertEqual(resp.status_code, 404)
 
 
-class PostMarkAsSolvingTest(TransactionTestCase):
+class PostMarkAsSolvingTest(TestCase):
     fixtures = ['forum/tests/small_size_forum.yaml']
 
     def setUp(self):
@@ -123,7 +123,7 @@ class PostMarkAsSolvingTest(TransactionTestCase):
         assert_posts_order([2, 3, 4])
 
 
-class PostDeleteTest(TransactionTestCase):
+class PostDeleteTest(TestCase):
     fixtures = ['forum/tests/small_size_forum.yaml']
 
     def setUp(self):

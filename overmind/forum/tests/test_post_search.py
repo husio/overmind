@@ -1,10 +1,10 @@
 from django.core.urlresolvers import reverse
-from django.test import TransactionTestCase, Client, TestCase
+from django.test import Client, TestCase
 
 from forum.templatetags import search
 
 
-class PostsSearchTest(TransactionTestCase):
+class PostsSearchTest(TestCase):
     fixtures = ['forum/tests/small_size_forum.yaml']
 
     def setUp(self):

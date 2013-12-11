@@ -3,7 +3,7 @@ import mock
 
 from django.contrib.auth import get_user_model
 from django.core.urlresolvers import reverse
-from django.test import TransactionTestCase
+from django.test import TestCase
 from django.test.utils import override_settings
 
 from forum.models import Post, Topic
@@ -13,7 +13,7 @@ from counter.tests.backend import Memory
 WIDGETS_URL = reverse("dynamicwidget:widgets")
 
 
-class LastSeenTest(TransactionTestCase):
+class LastSeenTest(TestCase):
     fixtures = ['forum/tests/small_size_forum.yaml']
 
     def setUp(self):
@@ -63,7 +63,7 @@ class LastSeenTest(TransactionTestCase):
         self.user.delete()
 
 
-class TopicViewCountTest(TransactionTestCase):
+class TopicViewCountTest(TestCase):
     fixtures = ['forum/tests/small_size_forum.yaml']
 
     @mock.patch('counter.backend.default')

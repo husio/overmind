@@ -1,11 +1,11 @@
-from django.test import TransactionTestCase, Client
+from django.test import TestCase, Client
 from django.contrib.auth import get_user_model
 from django.core.urlresolvers import reverse
 
 from forum.models import Topic
 
 
-class TopicCreationTest(TransactionTestCase):
+class TopicCreationTest(TestCase):
     fixtures = ['forum/tests/small_size_forum.yaml']
 
     def setUp(self):
