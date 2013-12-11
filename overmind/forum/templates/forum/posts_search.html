@@ -3,8 +3,10 @@
 
 {% load search urlquery %}
 
+{% block forum_search %}{% endblock %}
+
 {% block forum_content %}
-    <div class="search-results">
+    <div class="search-results content-inner">
         <div class="search-box">
             <form action="{% url "forum:posts-search" %}" method="GET">
                 <input type="search" placeholder="search" name="pattern" value="{{ pattern }}">

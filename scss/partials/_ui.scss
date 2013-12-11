@@ -31,10 +31,14 @@ input[type=text], input[type=search], input[type=email], input[type=number] {
   padding: 6px 8px;
 }
 
+input[type=search] {
+    width: 168px;
+}
+
 textarea {
   position: relative;
   background: $colorWhite;
-  padding: 4px 1%;
+  padding: 6px 8px;
   min-height: 64px;
   line-height: 1.5em;
   border: 1px solid $colorLightGrey;

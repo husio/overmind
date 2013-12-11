@@ -5,7 +5,8 @@
 
 
 {% block forum_content %}
-    <div style="width:49%;float:left;">
+<div class="content-inner table">
+    <div class="col col-1-2">
         <h1>Recent topic reports</h1>
         {% for th in topics_history %}
             <div>
@@ -31,7 +32,7 @@
         {% endfor %}
     </div>
 
-    <div style="width:49%;float:right;">
+    <div class="col col-2-2">
         <h1>Recent post reports</h1>
         {% for ph in posts_history %}
             <div>
@@ -57,4 +58,5 @@
             {% if not forloop.last %}<hr>{% endif %}
         {% endfor %}
     </div>
+</div>
 {% endblock %}

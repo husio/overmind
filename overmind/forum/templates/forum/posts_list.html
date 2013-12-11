@@ -11,13 +11,13 @@
     <div class="topic-title">
         <h1>{{ topic.subject }}</h1>
         <span class="tags">
-            {% if topic.is_closed %}<span class="tag closed"><i class="fa fa-ban fa-fw"></i>closed</span>{% endif %}
+            {% if topic.is_closed %}<span class="tag closed"><i class="fa fa-lock fa-fw"></i>closed</span>{% endif %}
             {% if topic.is_solved %}<span class="tag solved"><i class="fa fa-check fa-fw"></i>solved</span>{% endif %}
             {% for tag in topic.tags.all %}<span class="tag">{% if forloop.first %}<i class="fa fa-tags fa-fw"></i>{% endif %}{{ tag }}{% if not forloop.last %},{% endif %}</span>{% endfor %}
         </span>
     </div>
 
-    <div class="table posts-list">
+    <div class="table posts-list content-inner">
         {% for post in posts %}
             <div class="row" id="post-{{ post.id }}">
                 <div class="col">

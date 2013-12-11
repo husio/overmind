@@ -24,6 +24,11 @@
   vertical-align: middle;
 }
 
+.col-1-2, col-2-2 {
+    vertical-align: top;
+    width: 50%;
+}
+
 html, body {
   min-height: 100%;
   background-color: $colorDarkWhite;
@@ -41,4 +46,10 @@ html, body {
 .content {
   margin: auto;
 }
+
 $contentWidth: 96%;
+
+.content-inner {
+    width: $contentWidth;
+    margin: 10px auto 0 auto;
+}

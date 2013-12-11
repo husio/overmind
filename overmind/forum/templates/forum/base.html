@@ -26,10 +26,12 @@
         <div class="header-secondary">
             {% block forum_header_secondary %}{% endblock %}
             <div class="search-bar">
+                {% block forum_search %}
                 <form action="{% url "forum:posts-search" %}" method="GET">
                     <input type="search" name="pattern" placeholder="enter search string">
                     <button type="submit" class="btn-primary">search</button>
                 </form>
+                {% endblock %}
             </div>
         </div>
         <div class="content">
