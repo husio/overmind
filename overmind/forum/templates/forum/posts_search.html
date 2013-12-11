@@ -1,9 +1,11 @@
 {% extends "forum/base.html" %}
 
 
-{% load search urlquery %}
+{% load search urlquery markup %}
+
 
 {% block forum_search %}{% endblock %}
+
 
 {% block forum_content %}
     <div class="search-results content-inner">
@@ -27,7 +29,7 @@
         {% for post in posts %}
             <div class="results">
                 <h1>{{ post.topic.subject }}</h1>
-                {% mark_pattern post.content pattern %}
+                {{ post.content|mark_pattern:pattern|markup:"markdown" }}
             </div>
         {% empty %}
             {% if pattern %}
