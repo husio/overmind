@@ -23,11 +23,8 @@ from .forms import TopicForm, PostForm, SearchForm
 @never_cache
 def posts_search(request):
     form = SearchForm()
-
     if request.GET.get('pattern', None):
         form = SearchForm(request.GET)
-    else:
-        form = SearchForm()
 
     if form.is_valid():
         posts = Post.objects.exclude(is_deleted=True)\

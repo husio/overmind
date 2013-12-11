@@ -11,7 +11,7 @@
     <div class="search-results content-inner">
         <div class="search-box">
             <form action="{% url "forum:posts-search" %}" method="GET">
-                <input type="search" placeholder="search" name="pattern" value="{{ pattern }}">
+                <input type="search" placeholder="search" name="pattern" value="{{ pattern|default:"" }}">
                 {% for tag in tags %}
                     <label class="checkbox">
                         <input type="checkbox" name="tag" value="{{ tag.label }}" {% if tag.checked %}checked{% endif %}>
@@ -32,9 +32,13 @@
                 {{ post.content|mark_pattern:pattern|markup:"markdown" }}
             </div>
         {% empty %}
-            {% if pattern %}
-                No results
-            {% endif %}
+            <p>
+                {% if pattern %}
+                    No results
+                {% else %}
+                    Search in posts content
+                {% endif %}
+            </p>
         {% endfor %}
     </div>
     <div class="pagination">
