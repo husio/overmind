@@ -1,4 +1,3 @@
-import datetime
 import math
 
 from django.conf import settings
@@ -10,7 +9,7 @@ from django.db import connection, transaction
 from django.db.models import Q
 from django.http import HttpResponseForbidden, HttpResponseGone
 from django.shortcuts import get_object_or_404, redirect, render
-from django.utils.timezone import utc
+from django.utils import timezone
 from django.views.decorators.cache import never_cache
 
 from . import cache, permissions
@@ -208,7 +207,7 @@ def post_create(request, topic_pk):
 @never_cache
 @login_required
 def mark_all_topics_read(request):
-    now = datetime.datetime.now().replace(tzinfo=utc)
+    now = timezone.now()
     last_seen = LastSeen.obtain_for(request.user)
     last_seen.last_seen_all = now
     last_seen.seen_topics = {}
@@ -241,7 +240,7 @@ def topic_toggle_delete(request, topic_pk):
     TopicHistory.objects.create(topic=topic, action=action, author=request.user)
 
     topic.is_deleted = not topic.is_deleted
-    now = datetime.datetime.now().replace(tzinfo=utc)
+    now = timezone.now()
     topic.updated = now
     topic.content_updated = now
     topic.save()
@@ -264,7 +263,7 @@ def topic_toggle_close(request, topic_pk):
         return HttpResponseForbidden()
 
     topic.is_closed = not topic.is_closed
-    now = datetime.datetime.now().replace(tzinfo=utc)
+    now = timezone.now()
     topic.content_updated = now
     topic.save()
 
@@ -293,7 +292,7 @@ def post_toggle_delete(request, topic_pk, post_pk):
     action = 'recovered' if post.is_deleted else 'deleted'
     PostHistory.objects.create(post=post, action=action, author=request.user)
 
-    now = datetime.datetime.now().replace(tzinfo=utc)
+    now = timezone.now()
     post.is_deleted = not post.is_deleted
     post.save()
 
@@ -335,7 +334,7 @@ def post_toggle_is_solving(request, topic_pk, post_pk):
         TopicHistory.objects.create(topic=post.topic, action=action,
                                     author=request.user)
 
-    now = datetime.datetime.now().replace(tzinfo=utc)
+    now = timezone.now()
     post.save()
     topic.content_updated = now
     topic.save()
@@ -368,7 +367,7 @@ def post_edit(request, topic_pk, post_pk):
             if post.content == old_content:
                 return redirect(post.get_absolute_url())
 
-            now = datetime.datetime.now().replace(tzinfo=utc)
+            now = timezone.now()
             post.updated = now
             PostHistory.objects.create(
                     post=post, action='content_changed', author=request.user,
@@ -400,7 +399,7 @@ def post_report_as_spam(request, topic_pk, post_pk):
         all_reports = PostHistory.objects.filter(action='spam_reported',
                                                  post=post)
         if all_reports.count() > 5:
-            now = datetime.datetime.now().replace(tzinfo=utc)
+            now = timezone.now()
             post.is_deleted = True
             post.updated = now
             post.save()
@@ -424,7 +423,7 @@ def topic_report_as_spam(request, topic_pk):
         all_reports = TopicHistory.objects.filter(action='spam_reported',
                                                   topic=topic)
         if all_reports.count() > 5:
-            now = datetime.datetime.now().replace(tzinfo=utc)
+            now = timezone.now()
             topic.is_deleted = True
             topic.updated = now
             topic.content_updated = now
