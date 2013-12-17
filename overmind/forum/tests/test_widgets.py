@@ -1,5 +1,4 @@
 import json
-import mock
 
 from django.contrib.auth import get_user_model
 from django.core.urlresolvers import reverse
@@ -7,7 +6,6 @@ from django.test import TestCase
 from django.test.utils import override_settings
 
 from forum.models import Post, Topic
-from counter.tests.backend import Memory
 
 
 WIDGETS_URL = reverse("dynamicwidget:widgets")
@@ -66,10 +64,7 @@ class LastSeenTest(TestCase):
 class TopicViewCountTest(TestCase):
     fixtures = ['forum/tests/small_size_forum.yaml']
 
-    @mock.patch('counter.backend.default')
-    def test_topic_view_count(self, default_backend):
-        # XXX we cache the view now, so counting has to be fixed
-        default_backend.return_value = Memory()
+    def test_topic_view_count(self):
         topic = Topic.objects.get(pk=1)
         widget_key = 'topic-view-count:{}'.format(topic.id)
         self.assertEqual(self.counter_value(widget_key), 0)
