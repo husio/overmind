@@ -106,7 +106,7 @@ def posts_list(request, topic_pk):
         page = paginator.page(paginator.num_pages)
 
     topic.view_count += 1
-    topic.save()
+    topic.save(update_fields=['view_count'])
 
     ctx = {
         'topic': topic,
