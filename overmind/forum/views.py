@@ -97,6 +97,7 @@ def posts_list(request, topic_pk):
     posts = Post.objects.filter(topic=topic, is_deleted=False)\
             .select_related('author').order_by('created')
     paginator = Paginator(posts, settings.FORUM_POSTS_PER_PAGE)
+    paginator._count = topic.posts_count()
     try:
         page = paginator.page(request.GET.get('page', 1))
     except PageNotAnInteger:
