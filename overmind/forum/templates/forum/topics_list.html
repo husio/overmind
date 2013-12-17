@@ -46,7 +46,8 @@
                                 no responses
                             {% endif %}
                             &bull;
-                            <span dw-load="topic-view-count:{{ topic.id }}">- views</span>
+                            {# this is loading the view count, but the page can be cached, so we need to update the value anyway #}
+                            <span dw-load="topic-view-count:{{ topic.id }}">{{ topic.view_count }} view{{ topic.view_count|pluralize }}</span>
                             &bull;
                             <span title="{{ topic.updated }}">created {{ topic.updated }}</span>
                             {% if topic.posts_count > POSTS_PER_PAGE %}

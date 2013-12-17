@@ -18,6 +18,7 @@ class TopicHistoryAdmin(admin.TabularInline):
 class TopicAdmin(admin.ModelAdmin):
     inlines = (TopicHistoryAdmin, TabularPostAdmin)
     raw_id_fields = ('author', )
+    readonly_fields = ('view_count', 'response_count', 'posts_count')
     list_filter = ('is_deleted', 'created', 'updated')
 
 

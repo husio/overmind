@@ -13,8 +13,6 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.timezone import utc
 from django.views.decorators.cache import never_cache
 
-from counter import backend
-
 from . import cache, permissions
 from .models import Topic, Post, Tag, LastSeen, PostHistory, TopicHistory
 from .forms import TopicForm, PostForm, SearchForm
@@ -106,12 +104,8 @@ def posts_list(request, topic_pk):
     except EmptyPage:
         page = paginator.page(paginator.num_pages)
 
-    # this is not always called (condition cache decorator), but that's good
-    # thing. It means that the same user is not bumping the counter all the
-    # time
-    # XXX remove if from here, because the view is cached
-    counter = backend.default()
-    counter.increment('topic:view:{}'.format(topic.pk))
+    topic.view_count += 1
+    topic.save()
 
     ctx = {
         'topic': topic,

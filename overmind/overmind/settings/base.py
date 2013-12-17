@@ -23,7 +23,6 @@ INSTALLED_APPS = (
 
     'forum',
     'simpleauth',
-    'counter',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (

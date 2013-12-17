@@ -3,7 +3,6 @@ import collections
 from django.template import RequestContext
 from django.template.loader import render_to_string
 
-from counter import backend
 from dynamicwidgets.decorators import widget_handler
 
 from . import permissions
@@ -13,13 +12,11 @@ from .models import LastSeen, Post, Topic, PostHistory
 
 @widget_handler(r"^topic-view-count:(?P<tid>\d+)$")
 def topic_view_count(request, widgets):
-    key_tmpl = "topic:view:{}"
-    counter = backend.default()
-    keys = [key_tmpl.format(w.params.tid) for w in widgets]
-    counters = counter.get(*keys)
+    topics = Topic.objects.filter(id__in=[int(w.params.tid) for w in widgets])
+    counters = dict(topics.values_list('id', 'view_count'))
     res = {}
     for widget in widgets:
-        value = counters.get(key_tmpl.format(widget.params.tid), 0)
+        value = counters.get(int(widget.params.tid), 0)
         ctx = {'value': value}
         html = render_to_string('forum/widgets/topic_view_count.html', ctx)
         res[widget.wid] = {'html': html, 'counter': value}

@@ -61,6 +61,7 @@ class Topic(models.Model):
     updated = models.DateTimeField(auto_now_add=True, db_index=True)
     tags = models.ManyToManyField(Tag)
     response_count = models.PositiveIntegerField(default=0)
+    view_count = models.PositiveIntegerField(default=0)
     is_deleted = models.BooleanField(db_index=True, default=False)
     is_closed = models.BooleanField(default=False)
     is_solved = models.BooleanField(default=False)

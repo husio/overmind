@@ -87,8 +87,9 @@ def copy_topics(pg_connection, sqlt_connection):
         sqlt_c.execute('''
             INSERT INTO forum_topic(id, author_id, subject, created, updated,
                                     content_updated, response_count,
-                                    is_deleted, is_closed, is_solved)
-            VALUES ($1, $2, $3, $4, $4, $4, $5 - 1, 0, 0, 0)
+                                    is_deleted, is_closed, is_solved,
+                                    view_count)
+            VALUES ($1, $2, $3, $4, $4, $4, $5 - 1, 0, 0, 0, 0)
         ''', row)
         attached_tags = {None}
         for _ in range(random.randint(1, 5)):
