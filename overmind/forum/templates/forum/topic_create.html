@@ -1,12 +1,51 @@
 {% extends "forum/base.html" %}
 
+
+{% load staticfiles %}
+
+
+{% block forum_search %}{% endblock %}
+
+
 {% block forum_content %}
     <div class="form-page">
         <form action="{% url "forum:topic-create" %}" method="POST">
-            {{ form.as_p }}
+            <p>
+                {{ form.subject }}
+            </p>
+            </p>
+                <textarea id="topic-create" name="content"></textarea>
+                <div id="epiceditor"></div>
+            <p>
+            <p>
+                {{ form.tags }}
+            </p>
             {% csrf_token %}
             <button type="submit" class="btn-primary">create</button>
             <a href="{% url "forum:topics-list" %}" class="btn-secondary">cancel</a>
         </form>
     </div>
+{% endblock %}
+
+{% block javascript %}
+    {{ block.super }}
+    <script src="{% static "forum/js/epiceditor.js" %}" type="text/javascript"></script>
+    <script type="text/javascript" charset="utf-8">
+        var editor = new EpicEditor({
+            basePath: '',
+            localStorageName: 'topic-create',
+            autogrow: true,
+            textarea: 'topic-create',
+            file: {autoSave: false},
+            theme: {
+                base: '{% static "forum/css/epiceditor/epiceditor.css" %}',
+                preview: '{% static "forum/css/epiceditor/preview.css" %}',
+                editor: '{% static "forum/css/epiceditor/editor.css" %}'
+            }
+        });
+        $(function () {
+            editor.load();
+            $('#topic-create').hide();
+        });
+    </script>
 {% endblock %}
