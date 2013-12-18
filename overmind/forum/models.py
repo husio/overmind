@@ -30,11 +30,20 @@ class LastSeen(models.Model):
         It's not a manager method, because later we may want to replace it
         with a structure in memcache.
         """
-        obj, created = cls.objects.get_or_create(user=user, defaults={
+        user_id = getattr(user, 'id', user)
+        obj, created = cls.objects.get_or_create(user_id=user_id, defaults={
             'last_seen_all': datetime.datetime(2000, 1, 1).replace(tzinfo=utc),
             'seen_topics': {},
         })
         return obj
+
+    def post_is_new(self, post):
+        last_seen = self.seen_topics.get(str(post.topic_id), self.last_seen_all)
+        return post.updated > last_seen
+
+    def topic_is_new(self, topic):
+        last_seen = self.seen_topics.get(str(topic.id), self.last_seen_all)
+        return topic.updated > last_seen
 
 
 class TagManager(models.Manager):

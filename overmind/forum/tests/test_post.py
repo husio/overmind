@@ -3,7 +3,10 @@ from django.core.urlresolvers import reverse
 from django.test import Client, TestCase
 from django.test.utils import override_settings
 
-from forum.models import Topic, Post
+from forum.models import Topic, Post, LastSeen
+
+
+WIDGETS_URL = reverse("dynamicwidget:widgets")
 
 
 class PostCreationTest(TestCase):
@@ -130,9 +133,40 @@ class PostDeleteTest(TestCase):
         u = get_user_model().objects.get(id=2)
         u.set_password('a')
         u.save()
-        self.client = Client()
         self.assertTrue(self.client.login(username=u.username, password='a'))
 
     def post_toggle_delete(self, topic_id, post_id):
         url = reverse("forum:post-toggle-delete", args=(topic_id, post_id))
         return self.client.get(url)
+
+    def topic_has_new(self, user, topic):
+        user_id = getattr(user, 'id', user)
+        topic_id = getattr(topic, 'id', topic)
+        topic = Topic.objects.get(id=topic_id)
+        return LastSeen.obtain_for(user=user_id).topic_is_new(topic)
+
+    def test_post_delete_change_unseen(self):
+        user = get_user_model().objects.create_user(
+                "commonuser", "commonuser@example.com", "a")
+        c = Client()
+        self.assertTrue(c.login(username=user.username, password='a'))
+
+        self.assertTrue(self.topic_has_new(user, 2))
+
+        # make all topics "seen"
+        params = ["wid=post-is-new:{}".format(n) for n in range(1, 6)]
+        resp = c.get("{}?{}".format(WIDGETS_URL, '&'.join(params)))
+        self.assertEqual(resp.status_code, 200)
+        self.assertFalse(self.topic_has_new(user, 2))
+
+        # create new post
+        data = {'content': 'this post will be deleted later'}
+        resp = self.client.post(
+                reverse('forum:post-create', kwargs={'topic_pk': 2}), data)
+        self.assertEqual(resp.status_code, 302)
+        self.assertTrue(self.topic_has_new(user, 2))
+
+        # deleting the only new post should unmark related topic as new
+        kwargs = {'topic_pk': 2, 'post_pk': 6}
+        self.client.get(reverse('forum:post-toggle-delete', kwargs=kwargs))
+        self.assertFalse(self.topic_has_new(user, 2))

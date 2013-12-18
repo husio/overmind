@@ -1,4 +1,5 @@
 import collections
+import logging
 
 from django.template import RequestContext
 from django.template.loader import render_to_string
@@ -8,6 +9,9 @@ from dynamicwidgets.decorators import widget_handler
 from . import permissions
 from .forms import PostForm
 from .models import LastSeen, Post, Topic, PostHistory
+
+
+log = logging.getLogger(__name__)
 
 
 @widget_handler(r"^topic-view-count:(?P<tid>\d+)$")
@@ -111,7 +115,10 @@ def post_is_new(request, widgets):
     res = {}
     for widget in widgets:
         post_id = int(widget.params.pid)
-        tid, updated = posts[post_id]
+        tid, updated = posts.get(post_id, (None, None))
+        if not tid:
+            log.debug("cannot find post: {}".format(post_id))
+            continue
         is_new = updated > topics[tid]
         ctx = {'is_new': is_new}
         html = render_to_string('forum/widgets/post_is_new.html', ctx)
