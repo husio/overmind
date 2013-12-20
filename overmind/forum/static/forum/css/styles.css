@@ -466,8 +466,7 @@ select {
   margin: 0 auto;
   position: relative;
   padding: 10px 2px;
-  display: table;
-  border-top: 1px dashed #eeeeee; }
+  display: table; }
 
 .header-primary {
   margin-top: 20px;
