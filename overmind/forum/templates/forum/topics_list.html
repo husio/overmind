@@ -30,8 +30,8 @@
         {% for topic in topics %}
             <div class="topic">
                 <div class="topic-main">
-                    <a href="{{ topic.get_absolute_url }}" dw-load="topic-is-new:{{ topic.id }}">{{ topic.subject }}</a>
-                    <div class="topic-attributes-left">
+                    <a href="{{ topic.get_absolute_url }}">{{ topic.subject }}</a>
+                    <div class="topic-attributes-left" dw-load="topic-is-new:{{ topic.id }},prepend">
                         {% if topic.is_solved %}<span class="tag solved"><i class="fa fa-check fa-fw"></i></span>{% endif %}
                         {% if topic.is_closed %}<span class="tag closed"><i class="fa fa-lock fa-fw"></i></span>{% endif %}
                     </div>

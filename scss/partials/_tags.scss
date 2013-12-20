@@ -15,4 +15,8 @@ p.solving {
   &.closed {
     color: $colorLighterRed;
   }
+
+  &.new {
+    color: $colorShinyBlue;
+  }
 }

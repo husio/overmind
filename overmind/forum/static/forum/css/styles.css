@@ -1,4 +1,4 @@
-/* normalize.css v2.1.3 | MIT License | git.io/normalize */
+/*! normalize.css v2.1.3 | MIT License | git.io/normalize */
 /* ==========================================================================
    HTML5 display definitions
    ========================================================================== */
@@ -207,7 +207,7 @@ figure {
  * Define consistent border, margin, and padding.
  */
 fieldset {
-  border: 1px solid silver;
+  border: 1px solid #c0c0c0;
   margin: 0 2px;
   padding: 0.35em 0.625em 0.75em; }
 
@@ -381,7 +381,7 @@ a, a:visited, a:hover, a:active, a:link {
 
 html, body {
   min-height: 100%;
-  background-color: #fbfbfb;
+  background-color: white;
   overflow-x: hidden;
   position: relative; }
 
@@ -547,6 +547,8 @@ p.solving {
     color: #22aa22; }
   .tag.closed {
     color: #ff2222; }
+  .tag.new {
+    color: #0088cc; }
 
 .topic-list {
   /*
@@ -572,7 +574,9 @@ p.solving {
     .topic-list .topic-main a {
       white-space: nowrap;
       text-decoration: none;
-      font-size: 16px; }
+      font-size: 16px;
+      color: #0088cc;
+      font-weight: bold; }
     .topic-list .topic-main .new {
       font-weight: bold; }
     .topic-list .topic-main .topic-attributes-right {
