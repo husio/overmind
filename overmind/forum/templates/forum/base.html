@@ -15,14 +15,13 @@
 <body>
     <div class="main">
         <div class="header-primary">
-            <div class="home-container">
-                <a href="{% url "forum:topics-list" %}"><i class="fa fa-home fa-fw"></i>Topics list</a>
-            </div>
             <div class="actions">
+                <a href="{% url "forum:topics-list" %}"><i class="fa fa-home fa-fw"></i>Topics list</a>
                 {% block forum_header_primary %}{% endblock %}
             </div>
             <div class="login-area"><div dw-load="login-logout"></div></div>
         </div>
+        {% block forum_header_secondary_outer %}
         <div class="header-secondary">
             {% block forum_header_secondary %}{% endblock %}
             <div class="search-bar">
@@ -34,6 +33,7 @@
                 {% endblock %}
             </div>
         </div>
+        {% endblock %}
         <div class="content">
         {% block forum_content %}{% endblock %}
         </div>

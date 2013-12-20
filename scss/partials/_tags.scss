@@ -10,13 +10,18 @@ p.solving {
 
   &.solved {
     color: $colorLighterGreen;
+    @include opacity(0.7);
   }
 
   &.closed {
     color: $colorLighterRed;
+    @include opacity(0.7);
   }
 
   &.new {
-    color: $colorShinyBlue;
+    font-weight: bold;
+    font-size: $fontSizeSmall;
+    color: $colorYellow;
+    padding: 0;
   }
 }
