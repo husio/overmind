@@ -18,7 +18,7 @@
     display: block;
     vertical-align: top;
     position: relative;
-    padding: 8px 10px 4px 10px;
+    padding: 8px 10px 4px 0;
     line-height: 1.5em;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -44,7 +44,7 @@
     .topic-attributes-left {
         position: absolute;
         top: 28px;
-        left: 10px;
+        left: 0;
         width: 23px;
         span {
             font-size: $fontSizeSmall;
@@ -54,21 +54,38 @@
 
     .tags {
       font-size: $fontSizeSmall;
-      //position: absolute;
-      //right: 4px;
-      //bottom: 4px;
-      //max-width: 50%;
-      //text-align: right;
       line-height: 1.3em;
     }
 
     .topic-meta {
       font-size: $fontSizeSmall;
-      //max-width: 50%;
     }
   }
 }
 
 .topic-list-actions {
+    display: inline-block;
+    vertical-align: baseline;
+    /*
+    a:before {
+        content: '';
+        height: 100%;
+        border-left: 1px solid $colorDarkerGrey;
+        padding: 0 5px;
+        margin: 0 0 0 5px;
+    }*/
+}
 
+.search-filter {
+    display: table-cell;
+    vertical-align: middle;
+    a {
+        display: inline-block;
+        font-size: $fontSizeSmall;
+        min-width: 150px;
+        color: $colorDarkerGrey;
+        .fa-fw {
+            text-align: left;
+        }
+    }
 }

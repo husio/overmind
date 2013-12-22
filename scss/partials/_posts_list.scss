@@ -9,9 +9,6 @@
   .tags {
     display: inline-block;
   }
-  .posts-list-actions {
-    margin: 0 0 0.67em 0;
-  }
 }
 
 .posts-list {
@@ -173,18 +170,30 @@
       color: inherit;
     }
   }
+}
 
-/*
-  .post-history {
+.posts-list-actions {
     display: block;
-    font-size: $fontSizeSmall;
-    + ul {
-      li {
-        font-size: $fontSizeSmall;
-      }
+    /*
+    a {
+        color: $textHighlight;
+        &:hover {
+            color: $textHighlightHover;
+        }
+        &:before {
+            content: '';
+            height: 100%;
+            border-left: 1px solid $textHighlight;
+            padding: 0 5px;
+            margin: 0 0 0 5px;
+        }
+        &:first-child:before {
+            border-left: none;
+            margin: 0;
+            padding: 0;
+        }
     }
-  }
-*/
+    */
 }
 
 

@@ -1,5 +1,5 @@
 {% if can_delete %}
-    <a href="{% url "forum:topic-toggle-delete" topic_pk=topic.pk %}">
+    <a class="btn-primary btn-small" href="{% url "forum:topic-toggle-delete" topic_pk=topic.pk %}">
         {% if topic.is_deleted %}
             recover
         {% else %}
@@ -9,13 +9,13 @@
 {% endif %}
 
 {% if can_report_as_spam %}
-    <a href="{% url "forum:topic-report-as-spam" topic_pk=topic.pk %}">
+    <a class="btn-primary btn-small" href="{% url "forum:topic-report-as-spam" topic_pk=topic.pk %}">
         report as spam
     </a>
 {% endif %}
 
 {% if can_close %}
-    <a href="{% url "forum:topic-toggle-close" topic_pk=topic.pk %}">
+    <a class="btn-primary btn-small" href="{% url "forum:topic-toggle-close" topic_pk=topic.pk %}">
         {% if topic.is_closed %}
             open
         {% else %}

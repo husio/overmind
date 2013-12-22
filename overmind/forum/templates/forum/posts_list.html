@@ -2,11 +2,6 @@
 
 {% load avatar markup %}
 
-{% block forum_header_secondary %}
-{{ block.super }}
-<div class="posts-list-actions" dw-load="topic-attributes:{{ topic.id }}"></div>
-{% endblock %}
-
 {% block forum_content %}
     <div class="topic-title">
         <h1>{{ topic.subject }}</h1>
@@ -15,6 +10,7 @@
             {% if topic.is_solved %}<span class="tag solved"><i class="fa fa-check fa-fw"></i>solved</span>{% endif %}
             {% for tag in topic.tags.all %}<span class="tag">{% if forloop.first %}<i class="fa fa-tags fa-fw"></i>{% endif %}{{ tag }}{% if not forloop.last %},{% endif %}</span>{% endfor %}
         </span>
+        <div class="posts-list-actions" dw-load="topic-attributes:{{ topic.id }}"></div>
     </div>
 
     <div class="table posts-list content-inner">

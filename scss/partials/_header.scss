@@ -6,11 +6,12 @@
 
 .header-primary {
     display: block;
-    color: $colorGrey;
-    background: $colorDarkerGrey;
+    color: $textPrimary;
+    background: $colorWhite;
+    box-shadow: 0 1px 2px 0px $colorDarkGrey;
 
     a {
-        color: $colorDarkWhite;
+        color: $colorDarkerGrey;
         &:hover {
             color: $textHighlight;
         }
@@ -19,74 +20,24 @@
         display: inline-block;
         vertical-align: baseline;
     }
-    .topic-list-actions {
+    .search-bar {
         display: inline-block;
-        vertical-align: baseline;
-        a:before {
-            content: '';
-            height: 100%;
-            border-left: 1px solid $colorDarkWhite;
-            padding: 0 5px;
-            margin: 0 0 0 5px;
+        vertical-align: middle;
+        min-width: 270px;
+        text-align: left;
+        input, button {
+            display: inline-block;
+            vertical-align: middle;
         }
+        margin-left: 20px;
     }
     .login-area {
         display: inline-block;
         vertical-align: middle;
         text-align: right;
         position: absolute;
+        top: 16px;
         right: 2%;
     }
 }
 
-.header-secondary {
-    display: table;
-    min-width: $contentWidth;
-    box-shadow: 0 1px 2px 0 $colorDarkGrey;
-    background: $colorWhite;
-    .search-filter {
-        display: table-cell;
-        vertical-align: middle;
-        a {
-            display: inline-block;
-            font-size: $fontSizeSmall;
-            min-width: 150px;
-            color: $colorDarkerGrey;
-            .fa-fw {
-                text-align: left;
-            }
-        }
-    }
-    .posts-list-actions {
-        display: table-cell;
-        vertical-align: middle;
-        a {
-            color: $textHighlight;
-            &:hover {
-                color: $textHighlightHover;
-            }
-            &:before {
-                content: '';
-                height: 100%;
-                border-left: 1px solid $textHighlight;
-                padding: 0 5px;
-                margin: 0 0 0 5px;
-            }
-            &:first-child:before {
-                border-left: none;
-                margin: 0;
-                padding: 0;
-            }
-        }
-    }
-    .search-bar {
-        display: table-cell;
-        vertical-align: middle;
-        min-width: 270px;
-        text-align: right;
-        input, button {
-            display: inline-block;
-            vertical-align: middle;
-        }
-    }
-}

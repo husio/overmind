@@ -3,9 +3,6 @@
 
 {% load staticfiles %}
 
-{% block forum_header_secondary_outer %}{% endblock %}
-
-
 {% block forum_content %}
     <div class="form-page">
         <form action="{% url "forum:topic-create" %}" method="POST">

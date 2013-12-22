@@ -3,6 +3,12 @@
     box-sizing: content-box;
     padding: 6px 10px;
     color: $colorWhite;
+    display: inline-block;
+
+    &.btn-small {
+        font-size: $fontSizeSmall;
+        padding: 4px 6px;
+    }
 }
 
 .btn-primary, a.btn-primary {

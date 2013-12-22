@@ -19,21 +19,16 @@
                 <a href="{% url "forum:topics-list" %}"><i class="fa fa-home fa-fw"></i>Topics list</a>
                 {% block forum_header_primary %}{% endblock %}
             </div>
-            <div class="login-area"><div dw-load="login-logout"></div></div>
-        </div>
-        {% block forum_header_secondary_outer %}
-        <div class="header-secondary">
-            {% block forum_header_secondary %}{% endblock %}
+            {% block forum_search %}
             <div class="search-bar">
-                {% block forum_search %}
                 <form action="{% url "forum:posts-search" %}" method="GET">
                     <input type="search" name="pattern" placeholder="enter search string">
                     <button type="submit" class="btn-primary">search</button>
                 </form>
-                {% endblock %}
             </div>
+            {% endblock %}
+            <div class="login-area"><div dw-load="login-logout"></div></div>
         </div>
-        {% endblock %}
         <div class="content">
         {% block forum_content %}{% endblock %}
         </div>

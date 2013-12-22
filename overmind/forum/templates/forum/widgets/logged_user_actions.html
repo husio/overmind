@@ -1,7 +1,7 @@
 {% if user.is_authenticated %}
-    <a href="{% url "forum:topic-create" %}">create topic</a>
-    <a href="{% url "forum:mark-all-topics-read" %}">mark all topics as read</a>
+    <a class="btn-primary btn-small" href="{% url "forum:topic-create" %}">create topic</a>
+    <a class="btn-primary btn-small" href="{% url "forum:mark-all-topics-read" %}">mark all topics as read</a>
     {% if is_moderator %}
-        <a href="{% url "forum:latest-reports" %}">latest reports</a>
+        <a class="btn-secondary btn-small" href="{% url "forum:latest-reports" %}">latest reports</a>
     {% endif %}
 {% endif %}
