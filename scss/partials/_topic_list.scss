@@ -59,6 +59,11 @@
 
     .topic-meta {
       font-size: $fontSizeSmall;
+
+      a {
+        font-size: inherit;
+        font-weight: normal;
+      }
     }
   }
 }
@@ -66,14 +71,9 @@
 .topic-list-actions {
     display: inline-block;
     vertical-align: baseline;
-    /*
-    a:before {
-        content: '';
-        height: 100%;
-        border-left: 1px solid $colorDarkerGrey;
-        padding: 0 5px;
-        margin: 0 0 0 5px;
-    }*/
+    .btn-small {
+        vertical-align: bottom;
+    }
 }
 
 .search-filter {
