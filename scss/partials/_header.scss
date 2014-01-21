@@ -29,7 +29,15 @@
             display: inline-block;
             vertical-align: middle;
         }
+        input[type=search] {
+            transition: width .2s linear;
+
+            &:focus {
+                width: 270px;
+            }
+        }
         margin-left: 20px;
+
     }
     .login-area {
         display: inline-block;

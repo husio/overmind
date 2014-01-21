@@ -10,37 +10,47 @@
     </div>
 {% else %}
     {% if can_create_post %}
-        <form class="row" action="{% url "forum:post-create" topic_pk=topic.id %}" method="POST">
-            <div class="col">
-                <textarea id="topic-{{ topic.pk }}-comment" name="content" placeholder="reply"></textarea>
-                <div id="epiceditor"></div>
-                <span class="arrow-border"></span>
-                <span class="arrow-fill"></span>
-                {% csrf_token %}
-                <button class="btn-primary" type="submit">reply</button>
+        <div class="table posts-list md-preview content-inner" id="previewArea" style="display:none;">
+            <div class="row">
+                <div class="col">
+                    {% avatar_tag user.email 76 %}
+                </div>
+                <div class="col">
+                    <div class="post">
+                        <span class="meta small"><a>{{ user.username }}</a>, preview</span>
+                        <div class="preview-content"></div>
+                    </div>
+                </div>
             </div>
-            <div class="col">
-                {% avatar_tag user.email 76 %}
-            </div>
-        </form>
-        <script src="{% static "forum/js/epiceditor.js" %}" type="text/javascript"></script>
+        </div>
+
+        <div class="table new-post content-inner">
+            <form class="row" action="{% url "forum:post-create" topic_pk=topic.id %}" method="POST">
+                <div class="col">
+                    <textarea id="topic-{{ topic.pk }}-comment" name="content" placeholder="reply"></textarea>
+                    <span class="arrow-border"></span>
+                    <span class="arrow-fill"></span>
+                    {% csrf_token %}
+                    <button id="previewBtn" type="button" class="btn-secondary">preview</button>
+                    <button class="btn-primary" type="submit">reply</button>
+                </div>
+                <div class="col">
+                    {% avatar_tag user.email 76 %}
+                </div>
+            </form>
+        </div>
+        <script src="{% static "forum/js/Markdown.Converter.js" %}" type="text/javascript"></script>
         <script type="text/javascript" charset="utf-8">
-            var editor = new EpicEditor({
-                basePath: '',
-                localStorageName: 'topic-{{ topic.pk }}-comment',
-                autogrow: true,
-                textarea: 'topic-{{ topic.pk }}-comment',
-                file: {autoSave: false},
-                theme: {
-                    base: '{% static "forum/css/epiceditor/epiceditor.css" %}',
-                    preview: '{% static "forum/css/epiceditor/preview.css" %}',
-                    editor: '{% static "forum/css/epiceditor/editor.css" %}'
-                }
-            });
-            $(function () {
-                editor.load();
-                $('#topic-{{ topic.pk }}-comment').hide();
-            });
+            (function () {
+               var mdConverter = new Markdown.Converter();
+
+                $('#previewBtn').on('click', function () {
+                    var text = $('textarea[name=content]').val();
+                        result = mdConverter.makeHtml(text);
+
+                    $('#previewArea').show().find('.preview-content').html(result);
+                });
+            }());
         </script>
     {% else %}
         You do not have permission to comment on this topic.

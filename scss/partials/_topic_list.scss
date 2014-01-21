@@ -28,7 +28,6 @@
       text-decoration: none;
       font-size: $fontSizeBig;
       color: $colorShinyBlue;
-      font-weight: bold;
     }
 
     .new {
@@ -62,7 +61,6 @@
 
       a {
         font-size: inherit;
-        font-weight: normal;
       }
     }
   }
@@ -77,13 +75,13 @@
 }
 
 .search-filter {
-    display: table-cell;
-    vertical-align: middle;
+    display: block;
+    margin-top: 6px;
     a {
         display: inline-block;
         font-size: $fontSizeSmall;
-        min-width: 150px;
         color: $colorDarkerGrey;
+        margin: 6px 14px;
         .fa-fw {
             text-align: left;
         }

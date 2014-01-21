@@ -23,7 +23,7 @@
         </div>
 
         {% for post in posts %}
-            <div class="results">
+            <div class="shadow-box">
                 <h1>{{ post.topic.subject }}</h1>
                 {{ post.content|mark_pattern:pattern|markup:"markdown" }}
             </div>

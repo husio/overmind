@@ -8,7 +8,7 @@
     <div class="topic-title">
         <h1>all topics</h1>
         <div class="topic-list-actions" dw-load="logged-user-actions"></div>
-        <div class="search-filter">
+        <div class="shadow-box search-filter">
             {% for tag in tags %}
                 <a href="?{% urlquery_toggle request tag=tag.label %}">
                     {% if tag.checked %}

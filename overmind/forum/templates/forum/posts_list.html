@@ -44,7 +44,7 @@
 
     {% if not page.has_next %}
         {# we're able to comment only from the lasts page #}
-        <div class="table new-post" dw-load="topic-comment-form:{{ topic.id }}"></div>
+        <div dw-load="topic-comment-form:{{ topic.id }}"></div>
     {% endif %}
 
     <div class="pagination">
