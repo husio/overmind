@@ -42,8 +42,16 @@ class LastSeen(models.Model):
         return post.updated > last_seen
 
     def topic_is_new(self, topic):
-        last_seen = self.seen_topics.get(str(topic.id), self.last_seen_all)
-        return topic.updated > last_seen
+        topic_id = getattr(topic, 'id', topic)
+        posts = Post.objects.filter(topic__id=topic_id, is_deleted=False)\
+                .order_by('updated')
+        try:
+            last_post_updated = posts.values_list('updated', flat=True)[0]
+        except IndexError:
+            return False
+        last_seen = self.seen_topics.get(str(topic_id), self.last_seen_all)
+        last_seen = last_seen.replace(microsecond=0)
+        return last_post_updated > last_seen
 
 
 class TagManager(models.Manager):

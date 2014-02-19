@@ -40,10 +40,8 @@ def topic_is_new(request, widgets):
     last_seen = LastSeen.obtain_for(request.user)
     for widget in widgets:
         topic_id = int(widget.params.tid)
-        latest = last_seen.seen_topics.get(
-                str(topic_id), request.user.forum_last_seen.last_seen_all)
         topic = topics.get(topic_id)
-        is_new = topic.updated.replace(microsecond=0) > latest
+        is_new = last_seen.topic_is_new(topic)
         ctx = {'is_new': is_new, 'topic': topic}
         html = render_to_string('forum/widgets/topic_is_new.html', ctx)
         res[widget.wid] = {'html': html, 'isnew': is_new}
