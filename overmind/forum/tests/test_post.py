@@ -142,8 +142,8 @@ class PostDeleteTest(TestCase):
     def topic_has_new(self, user, topic):
         user_id = getattr(user, 'id', user)
         topic_id = getattr(topic, 'id', topic)
-        topic = Topic.objects.get(id=topic_id)
-        return LastSeen.obtain_for(user=user_id).topic_is_new(topic)
+        new_topics = LastSeen.obtain_for(user=user_id).new_topics([topic_id])
+        return topic_id in new_topics
 
     def test_post_delete_change_unseen(self):
         user = get_user_model().objects.create_user(

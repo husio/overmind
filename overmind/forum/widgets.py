@@ -37,11 +37,11 @@ def topic_is_new(request, widgets):
     for topic in query:
         topics[topic.id] = topic
     res = {}
-    last_seen = LastSeen.obtain_for(request.user)
+    new_topics = LastSeen.obtain_for(request.user).new_topics(topics)
     for widget in widgets:
         topic_id = int(widget.params.tid)
         topic = topics.get(topic_id)
-        is_new = last_seen.topic_is_new(topic)
+        is_new = topic_id in new_topics
         ctx = {'is_new': is_new, 'topic': topic}
         html = render_to_string('forum/widgets/topic_is_new.html', ctx)
         res[widget.wid] = {'html': html, 'isnew': is_new}

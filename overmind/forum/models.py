@@ -41,17 +41,21 @@ class LastSeen(models.Model):
         last_seen = self.seen_topics.get(str(post.topic_id), self.last_seen_all)
         return post.updated > last_seen
 
-    def topic_is_new(self, topic):
-        topic_id = getattr(topic, 'id', topic)
-        posts = Post.objects.filter(topic__id=topic_id, is_deleted=False)\
+    def new_topics(self, topics):
+        topic_ids = [getattr(topic, 'id', topic) for topic in topics]
+        posts = Post.objects.filter(topic__in=topic_ids, is_deleted=False)\
                 .order_by('updated')
         try:
             last_post_updated = posts.values_list('updated', flat=True)[0]
         except IndexError:
             return False
-        last_seen = self.seen_topics.get(str(topic_id), self.last_seen_all)
-        last_seen = last_seen.replace(microsecond=0)
-        return last_post_updated > last_seen
+        result = set()
+        for topic_id in topic_ids:
+            last_seen = self.seen_topics.get(str(topic_id), self.last_seen_all)
+            last_seen = last_seen.replace(microsecond=0)
+            if last_post_updated > last_seen:
+                result.add(topic_id)
+        return result
 
 
 class TagManager(models.Manager):
