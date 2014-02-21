@@ -83,7 +83,7 @@ class Topic(models.Model):
     tags = models.ManyToManyField(Tag)
     response_count = models.PositiveIntegerField(default=0)
     view_count = models.PositiveIntegerField(default=0)
-    is_deleted = models.BooleanField(db_index=True, default=False)
+    is_deleted = models.BooleanField(default=False)
     is_closed = models.BooleanField(default=False)
     is_solved = models.BooleanField(default=False)
     # updated whenever content was changed (value used for caching)
@@ -134,7 +134,7 @@ class Post(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now_add=True)
     ip = models.IPAddressField(null=True, blank=True)
-    is_deleted = models.BooleanField(db_index=True, default=False)
+    is_deleted = models.BooleanField(default=False)
     is_solving = models.BooleanField(default=False)
 
     def __str__(self):
