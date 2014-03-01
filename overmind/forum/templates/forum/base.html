@@ -35,6 +35,8 @@
     {% block javascript %}
         <script src="{% static "forum/js/jquery.js" %}" type="text/javascript"></script>
         <script src="{% static "dynamicwidgets/js/dynamicwidgets.js" %}" type="text/javascript"></script>
+        <script src="{% static "forum/js/instaclick.js" %}" data-no-instant></script>
+        <script data-no-instant>InstantClick.init(60);</script>
     {% endblock %}
 </body>
 </html>
